@@ -7,7 +7,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
-// const router = require('./routes');
+const router = require('./routes');
 
 const app = express();
 
@@ -19,6 +19,6 @@ app.use(express.json());
 app.use(compression());
 app.use(helmet.contentSecurityPolicy({ useDefaults: true, directives: { 'img-src': ["'self'", 'https: data:'] } }));
 app.use(express.static(join(__dirname, '..', '..', 'public')));
-// app.use('/api/v1/', router);
+app.use('/api/v1/', router);
 
 module.exports = app;
