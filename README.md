@@ -4,7 +4,7 @@ Reddit website clone project.
 
 ## Live link
 
-You can check the website out from ***[HERE]()***.
+You can check the website out from ***[HERE](https://reddit-clone-moustf.herokuapp.com/)***.
 
 ## What is this project
 
