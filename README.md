@@ -31,7 +31,7 @@ This project is one of the GSG Code Academy's requirements. In this project, we 
 
 ## ER diagram
 
-You can check the ER diagram from ***[HERE]()***.
+You can check the ER diagram from ***[HERE](https://drawsql.app/teams/moustf/diagrams/reddit-clone)***.
 
 ## How to get the project on you local machine
 
