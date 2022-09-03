@@ -1,0 +1,30 @@
+BEGIN;
+
+DROP TABLE IF EXISTS users, posts, comments CASCADE;
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100) UNIQUE,
+  password VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  fname VARCHAR(25) NOT NULL,
+  lname VARCHAR(25) NOT NULL,
+  phone BIGINT
+);
+
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  content TEXT NOT NULL,
+  votes INT,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  content TEXT NOT NULL,
+  votes INT,
+  post_id INT NOT NULL,
+  CONSTRAINT fs_post_id FOREIGN KEY(post_id) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+COMMIT;
