@@ -156,6 +156,34 @@
         </section>
       </section>
     </header>
+    <section class="auth">
+      <section class="inner-cont">
+        <section class="login-form">
+          <img 
+          src="https://www.redditstatic.com/accountmanager/bbb584033aa89e39bad69436c504c9bd.png" 
+          alt="login image"
+          class="image"
+          />
+          <section class="login-section">
+            <section class="head">
+              <h1 class="title">Login</h1>
+              <i class="ri-close-line close-icon"></i>
+            </section>
+            <p class="agreement">
+              By continuing, you agree to 
+              <a href="https://www.redditinc.com/policies/user-agreement" class="user-ag">User Agreement</a>
+              and
+              <a href="https://www.reddit.com/policies/privacy-policy" class="privacy">Privacy Policy</a>.
+            </p>
+            <form action="/api/v1/auth/login" method="post">
+              <input type="text" name="username" id="username" placeholder="USERNAME" aria-label="username" />
+              <input type="password" name="password" id="password" placeholder="PASSWORD" aria-label="password" />
+              <input type="submit" value="Login" aria-label="login button" />
+            </form>
+          </section>
+        </section>
+      </section>
+    </section>
   </div>
   <script src="/javascript/scripts.js"></script>
 </body>

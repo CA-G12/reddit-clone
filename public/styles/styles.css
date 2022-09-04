@@ -275,13 +275,13 @@ body {
 .header .mobile-side-menu .search-box .search-icon {
   position: absolute;
   left: 10px;
-  top: 0.5vh;
+  top: 0.9vh;
   z-index: 5;
 }
 
 .header .mobile-side-menu .search-box .search {
   width: 100%;
-  height: 100%;
+  height: 4vh;
   position: absolute;
   left: 0;
   top: 0;
@@ -445,6 +445,102 @@ body {
 
 .header .account-nav {
   display: none;
+}
+
+.container .auth {
+  width: 100%;
+  height: 100vh;
+}
+
+.container .auth .inner-cont {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.container .auth .inner-cont .login-form {
+  width: 60%;
+  height: 60%;
+  background-color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.container .auth .inner-cont .login-form img {
+  transform: rotate(90deg) translate(-3.4rem, -3.3rem);
+    width: 128px;
+    height: 235px;
+}
+
+.container .auth .inner-cont .login-form .login-section {
+  width: 100%;
+  padding: 1rem;
+}
+
+.container .auth .inner-cont .login-form .login-section .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+  transform: translateY(-5rem);
+}
+
+.container .auth .inner-cont .login-form .login-section .head i {
+  cursor: pointer;
+}
+
+.container .auth .inner-cont .login-form .agreement {
+  font-size: small;
+  transform: translateY(-4.5rem);
+}
+
+.container .auth .inner-cont .login-form .login-section form {
+  width: 100%;
+  height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:not(:last-of-type) {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:not(:last-of-type):hover,
+.container .auth .inner-cont .login-form .login-section form input:not(:last-of-type):active {
+  outline: 1px solid var(--third-color);
+  border: none;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:last-of-type {
+  width: 80%;
+  height: 2rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  font-size: medium;
+  font-weight: 600;
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:not(:last-of-type)::placeholder {
+  font-size: small;
 }
 
 /* Ending the style for the mobile versions */
@@ -774,6 +870,49 @@ body {
   background-color: var(--main-color);
   border: 1px solid #24a0ed;
   color: #24a0ed;
+}
+
+.container .auth .inner-cont .login-form {
+  flex-direction: row;  
+}
+
+.container .auth .inner-cont .login-form img {
+  transform: rotate(0deg) translate(0rem, 0rem);
+  width: 20%;
+  height: 100%;
+}
+
+.container .auth .inner-cont .login-form .login-section {
+  padding: 2rem;
+}
+
+.container .auth .inner-cont .login-form .login-section .head {
+  transform: translateY(0rem);
+  font-size: xx-large;
+  margin-bottom: 2rem;
+}
+
+.container .auth .inner-cont .login-form .agreement {
+  transform: translateY(0rem);
+  font-size: larger;
+  margin-bottom: 8rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form {
+  height: 12rem;
+  align-items: flex-start;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:not(:last-of-type) {
+  width: 40%;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:last-of-type {
+  width: 40%;
+  height: 2.5rem;
+  font-size: large;
 }
 
   .logged-in .header-mobile .edit-icon,
