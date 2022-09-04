@@ -14,12 +14,39 @@ const loggedInToggle = (isLogged) => {
   }
 };
 
-// ? Create the fetch function to get the posts data.
-fetch('/api/v1/posts')
-  .then((jsonData) => jsonData.json())
-  .then((data) => {
-    loggedInToggle(data.isLoggedIn);
+// ? Creating the function which is responsible for creating the autocomplete options.
+const crateAutocomplete = (array) => {
+  const autocompleteElements = document.querySelectorAll('.autocomplete');
+  autocompleteElements.forEach((ele) => {
+    // eslint-disable-next-line no-param-reassign
+    ele.innerHTML = '';
+    array.forEach((row) => {
+      const optionDiv = document.createElement('div');
+      optionDiv.classList.add('option');
+      optionDiv.setAttribute('data-id', row.id);
+      ele.appendChild(optionDiv);
+
+      const fullName = document.createElement('p');
+      fullName.classList.add('full-name');
+      fullName.textContent = row.full_name;
+      optionDiv.appendChild(fullName);
+
+      const innerDiv = document.createElement('div');
+      innerDiv.classList.add('inner');
+      optionDiv.appendChild(innerDiv);
+
+      const username = document.createElement('p');
+      username.classList.add('username');
+      username.textContent = `Username: ${row.username}`;
+      innerDiv.appendChild(username);
+
+      const email = document.createElement('p');
+      email.classList.add('email');
+      email.textContent = `Email: ${row.email}`;
+      innerDiv.appendChild(email);
+    });
   });
+};
 
 // ? Creating the event listeners to activate the clickable fields in the page.
 accountBox.addEventListener('click', () => {
@@ -27,11 +54,26 @@ accountBox.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 });
 
+// ? Creating the eventLister to add show the autocomplete on input event
+// ? and Fetching the data on the /api/v1/users/autocomplete endpoint.
 searchInput.forEach((input) => {
   input.addEventListener('input', (e) => {
-    e.target.nextElementSibling.style.display = 'block';
+    fetch(`/api/v1/users/autocomplete?value=${e.target.value}`)
+      .then((jsonData) => jsonData.json())
+      .then((data) => {
+        e.target.nextElementSibling.style.display = 'block';
+        e.target.nextElementSibling.nextElementSibling.style.display = 'block';
+        crateAutocomplete(data);
+      });
   });
 });
+
+// ? Create the fetch function to get the posts data.
+fetch('/api/v1/posts')
+  .then((jsonData) => jsonData.json())
+  .then((data) => {
+    loggedInToggle(data.isLoggedIn);
+  });
 
 editIcon.addEventListener('click', () => {
   const postOptions = document.querySelector('.post-options');
