@@ -58,7 +58,17 @@
         </section>
         <section class="search-box">
           <i class="ri-search-line search-icon"></i>
-          <input type="text" name="search" id="search-mobile" class="search" placeholder="Search Reddit" aria-label="search bar" />
+          <input 
+            type="text" 
+            name="search"
+            autocomplete="off"
+            id="search" 
+            class="search" 
+            placeholder="Search Reddit" 
+            aria-label="search bar" 
+          />
+          <section class="autocomplete" 
+          id="autocomplete-mobile"></section>
           <i class="ri-close-line close-icon"></i>
         </section>
         <section class="user">
@@ -80,7 +90,16 @@
       </section>
       <section class="search-box">
         <i class="ri-search-line search-icon"></i>
-        <input type="text" name="search" id="search" class="search" placeholder="Search Reddit" aria-label="search bar" />
+        <input 
+          type="text" 
+          name="search"
+          autocomplete="off"
+          id="search" 
+          class="search" 
+          placeholder="Search Reddit" 
+          aria-label="search bar" 
+        />
+        <section class="autocomplete" id="autocomplete-desktop"></section>
         <i class="ri-close-line close-icon"></i>
       </section>
       <section class="auth">
