@@ -3,8 +3,9 @@ const editIcon = document.querySelector('.edit-icon');
 const closeIcon = document.querySelector('.header-mobile .close-icon');
 const burgerMenu = document.querySelector('.burger-menu-icon');
 const sideMenuCloseIcon = document.querySelector('.mobile-side-menu .close-icon');
-const searchInput = document.querySelectorAll('#search');
+const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
+const loginButtons = document.querySelectorAll('.auth .login');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -55,4 +56,16 @@ burgerMenu.addEventListener('click', () => {
 sideMenuCloseIcon.addEventListener('click', () => {
   const mobileSideMenu = document.querySelector('.mobile-side-menu');
   mobileSideMenu.style.display = 'none';
+});
+
+loginButtons.forEach((button) => {
+  button.addEventListener(('click'), () => {
+    const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+    LoginFormElement.style.display = 'flex';
+  });
+});
+
+document.querySelector('.container .auth .close-icon').addEventListener('click', () => {
+  const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+  LoginFormElement.style.display = 'none';
 });
