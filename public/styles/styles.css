@@ -48,3 +48,361 @@ button {
 }
 
 /* Ending the styles reset. */
+
+/* Starting the general style */
+
+:root {
+  --main-color: #ffffff;
+  --secondary-color: #DAE0E6;
+  --third-color: #222222;
+  --forth-color: #1D2535;
+  --identity-color: #F14C26;
+}
+
+html {
+  line-height: 16px;
+}
+
+body {
+  width: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Ending the general style */
+
+/* Starting the style for the mobile versions */
+
+.header {
+  width: 100%;
+  height: 48px;
+  background-color: var(--forth-color);
+  position: fixed;
+  padding: 5px 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header .logo .reddit-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3rem;
+  font-size: 2.5rem;
+  color: var(--identity-color);
+  background-color: var(--main-color);
+  margin-right: 5px;
+}
+
+.header .logo .reddit-text {
+  color: var(--main-color);
+  position: relative;
+}
+
+.header .logo .reddit-text .reddit-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--identity-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 3.3rem;
+  top: 1px;
+  z-index: 3;
+}
+
+.header .header-mobile {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logged-in .header-mobile {
+  width: 20%;
+}
+
+.header .header-mobile .use-app {
+  width: 4.2rem;
+  height: 1.5rem;
+  background-color: var(--identity-color);
+  color: var(--main-color);
+  font-size: small;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  line-height: 1.5rem;
+  border-radius: 2rem;
+}
+
+.logged-in .header-mobile .use-app {
+  display: none;
+}
+
+.header .header-mobile .edit-icon,
+.header .header-mobile .close-icon ,
+.header .header-mobile .burger-menu-icon {
+  color: var(--main-color);
+  font-size: x-large;
+}
+
+.header .header-mobile .edit-icon {
+  display: none;
+}
+
+.logged-in .header-mobile .edit-icon {
+  display: block;
+}
+
+.header .header-mobile .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+  display: none;
+}
+
+.header .post-options {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--main-color);
+  border-top: 1px solid #efefed;
+  position: absolute;
+  left: 0;
+  top: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  display: none;
+}
+
+.header .post-options .text,
+.header .post-options .link {
+  width: 30%;
+  height: 58%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .post-options .text .text-icon,
+.header .post-options .link .link-icon {
+  width: 60px;
+  font-size: 60px;
+  color: #24a0ed;
+}
+
+.header .post-options .text .inner-text,
+.header .post-options .link .inner-text {
+  color: #a5a4a4;
+  font-size: small;
+  font-weight: 300;
+}
+
+.header .mobile-side-menu {
+  width: 100%;
+  height: 40vh;
+  background-color: var(--forth-color);
+  color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  display: none;
+}
+
+.header .mobile-side-menu .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logged-in .mobile-side-menu .head {
+  margin-bottom: 0.2rem;
+}
+
+.header .mobile-side-menu .head .logo .reddit-text .reddit-dot {
+  width: 4px;
+  height: 4px;
+  left: 2.2rem;
+}
+
+.header .mobile-side-menu .head .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+}
+
+.header .mobile-side-menu .search-box {
+  display: block;
+  width: 100%;
+  height: 3vh;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.logged-in .mobile-side-menu .search-box {
+  margin-bottom: 0.3rem;
+}
+
+.header .mobile-side-menu .search-box .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 0.5vh;
+  z-index: 5;
+}
+
+.header .mobile-side-menu .search-box .search {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  padding-left: 2rem;
+  background-color: rgba(246,247,248,.1);
+  border: none;
+  border-radius: 1rem;
+}
+.header .mobile-side-menu .search-box .search:focus {
+  outline: none;
+  border: none;
+}
+
+.header .mobile-side-menu .search-box .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 0.5vh;
+  z-index: 5;
+  background-color: #a5a4a4;
+  border-radius: 50%;
+  display: none;
+}
+
+.header .mobile-side-menu .user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.logged-in .mobile-side-menu .user {
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.header .mobile-side-menu .user img {
+  width: 32px;
+  height: 32px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.header .mobile-side-menu .user .username {
+  font-weight: 700;
+  font-size: large;
+}
+
+
+.header .mobile-side-menu .auth {
+  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .mobile-side-menu .auth .login,
+.header .mobile-side-menu .auth .signup {
+  display: block;
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #24a0ed;
+  border: none;
+  cursor: pointer;
+}
+
+.header .mobile-side-menu .auth .login {
+  margin-bottom: 1rem;
+  background-color: var(--main-color);
+  border: 1px solid #24a0ed;
+  color: #24a0ed;
+}
+
+.logged-in .mobile-side-menu .auth {
+  display: none;
+}
+
+.header .mobile-side-menu .logout {
+  display: none;
+}
+
+.logged-in .mobile-side-menu .logout {
+  display: block;
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #24a0ed;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 1rem;
+}
+
+.header .header-navigator {
+  display: none;
+}
+
+.header .search-box {
+  display: none;
+}
+
+.header .auth {
+  display: none;
+}
+
+.header .icons {
+  display: none;
+}
+
+.header .shop-avatars {
+  display: none;
+}
+
+.header .account-nav {
+  display: none;
+}
+
+/* Ending the style for the mobile versions */
