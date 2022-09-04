@@ -291,6 +291,46 @@ body {
   border: none;
   border-radius: 1rem;
 }
+
+.header .autocomplete {
+  width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 30px;
+  z-index: 20;
+  color: var(--third-color);
+  display: none;
+}
+
+.header .autocomplete .option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #7C8082;
+  margin-bottom: 01rem;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.header .autocomplete .option .full-name {
+  font-weight: 600;
+}
+.header .autocomplete .option .inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 2rem;
+  font-size: small;
+  font-weight: 600;
+}
+
 .header .mobile-side-menu .search-box .search:focus {
   outline: none;
   border: none;
@@ -490,6 +530,10 @@ body {
 
   ::placeholder {
     color: #585858;
+  }
+
+  .header .autocomplete {
+    height: 20rem;
   }
 
   .header .search-box .close-icon {
