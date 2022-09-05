@@ -24,7 +24,7 @@ describe('Dummy tests for ci github actions.', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toBeDefined();
+        expect(res.body.rows).toBeDefined();
         return done();
       });
   });
