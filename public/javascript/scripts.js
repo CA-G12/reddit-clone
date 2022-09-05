@@ -8,6 +8,8 @@ const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
 const loginSubmit = document.querySelector('#login-submit');
+const signupFormButton = document.querySelectorAll('.auth .signup');
+const nextPhase = document.querySelector('.next-section');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -146,7 +148,26 @@ loginButtons.forEach((button) => {
   });
 });
 
-document.querySelector('.container .auth .close-icon').addEventListener('click', () => {
+signupFormButton.forEach((button) => {
+  button.addEventListener(('click'), () => {
+    const LoginFormElement = document.querySelector('.container .auth .inner-signup-cont');
+    LoginFormElement.style.display = 'flex';
+  });
+});
+
+nextPhase.addEventListener('click', () => {
+  const firstPhase = document.querySelector('.first-phase');
+  const secondPhase = document.querySelector('.second-phase');
+  firstPhase.style.display = 'none';
+  secondPhase.style.display = 'flex';
+});
+
+document.querySelector('.container .auth .login-section .close-icon').addEventListener('click', () => {
   const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+  LoginFormElement.style.display = 'none';
+});
+
+document.querySelector('.signup-section .close-icon').addEventListener('click', () => {
+  const LoginFormElement = document.querySelector('.container .auth .inner-signup-cont');
   LoginFormElement.style.display = 'none';
 });
