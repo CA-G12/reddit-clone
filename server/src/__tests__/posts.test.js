@@ -11,7 +11,7 @@ beforeAll(() => {
 });
 afterAll(() => connection.end());
 
-describe('Dummy tests for ci github actions.', () => {
+describe('Testing posts queries and routes.', () => {
   it('3 * 2 equals 4', () => {
     expect(3 * 2).toBe(6);
   });
