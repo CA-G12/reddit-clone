@@ -38,7 +38,7 @@ const signupController = (req, res, next) => {
       hashPassword(password)
         .then((hashed) => {
           insertUser(username, hashed, email, fname, lname, phone)
-            .then((data) => res.json(data.rows[0]))
+            .then((data) => res.status(201).json(data.rows[0]))
             .catch((err) => {
               console.log(err);
               next(new CustomizedError(501, 'Not implemented!!!'));
