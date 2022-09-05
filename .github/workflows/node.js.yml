@@ -39,4 +39,4 @@ jobs:
       - name: Testing Routes
         run: npm test
         env:
-          TEST_DB_URL: postgres://postgres:123456@postgres:5432/test
+          TEST_DB_URL: postgres://reddit_test_user:root@localhost:5432/reddit_test
