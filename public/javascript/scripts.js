@@ -56,11 +56,11 @@ const crateAutocomplete = (array) => {
 
 // ? Creating the function which is responsible for validating the form elements.
 const validateLogin = (username, password) => {
-  const isUsernameValid = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
+  const isUsernameValid = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
   const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/.test(password);
 
   if (!isUsernameValid) {
-    window.alert('Username must be begin and end with letter or numbers, and be between 8 and 20 characters');
+    window.alert('Username must be begin and end with letter or numbers, and be between 5 and 20 characters');
   }
   if (!isPasswordValid) {
     window.alert('Password must contains one lower case letter, one upper case letter, one number and one sign, and be at least 7 characters');
@@ -73,7 +73,7 @@ const validateLogin = (username, password) => {
 const validateSignup = ({
   username, password, confirmPassword, email, fname, lname, phone,
 }) => {
-  const isUsernameValid = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
+  const isUsernameValid = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
   const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/.test(password);
   const isPasswordConfirmed = password === confirmPassword;
   const isEmailValid = /^[a-zA-z0-9]?.*@[a-zA-z0-9]{1,}\.[a-zA-Z]{1,}$/.test(email);
@@ -82,7 +82,7 @@ const validateSignup = ({
   const isPhoneValid = /[0-9]{10}/.test(phone);
 
   if (!isUsernameValid) {
-    window.alert('Username must be begin and end with letter or numbers, and be between 8 and 20 characters');
+    window.alert('Username must be begin and end with letter or numbers, and be between 5 and 20 characters');
   }
   if (!isPasswordValid) {
     window.alert('Password must contains one lower case letter, one upper case letter, one number and one sign, and be at least 7 characters');
@@ -146,7 +146,6 @@ signupSubmit.addEventListener('click', () => {
       body: JSON.stringify({
         username,
         password,
-        confirmPassword,
         email,
         fname,
         lname,
