@@ -1,24 +1,26 @@
-name: Test
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
+name: Node.js CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  container-job:
+  build:
+
     runs-on: ubuntu-latest
-    container: node:16
 
     services:
       postgres:
         image: postgres
+
         env:
-          POSTGRES_PASSWORD: 123456
-          POSTGRES_USER: postgres
-          POSTGRES_DB: test
-          POSTGRES_PORT: 5432
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: user
+          POSTGRES_DB: testing
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -26,16 +28,22 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Testing Routes
-        run: npm test
-        
-        env:
-          TEST_URL: postgres://postgres:123456@postgres:5432/test
-          NODE_ENV: test
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
+      env:
+        TEST_DB_URL: postgres://user:password@localhost:5432/testing
+        SECRET_KEY: MyTopConfedentialSecretKey.
+        HASH_SALT: $2b$12$X4kv7j5ZcG39WgogSl16au
