@@ -452,7 +452,8 @@ body {
   height: 100vh;
 }
 
-.container .auth .inner-cont {
+.container .auth .inner-cont,
+.container .auth .inner-signup-cont  {
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -466,7 +467,8 @@ body {
   display: none;
 }
 
-.container .auth .inner-cont .login-form {
+.container .auth .inner-cont .login-form,
+.container .auth .inner-signup-cont .signup-form {
   width: 60%;
   height: 60%;
   background-color: var(--main-color);
@@ -474,18 +476,21 @@ body {
   flex-direction: column;
 }
 
-.container .auth .inner-cont .login-form img {
+.container .auth .inner-cont .login-form img,
+.container .auth .inner-signup-cont .signup-form img {
   transform: rotate(90deg) translate(-3.4rem, -3.3rem);
-    width: 128px;
-    height: 235px;
+  width: 128px;
+  height: 235px;
 }
 
-.container .auth .inner-cont .login-form .login-section {
+.container .auth .inner-cont .login-form .login-section,
+.container .auth .inner-signup-cont .signup-form .signup-section {
   width: 100%;
   padding: 1rem;
 }
 
-.container .auth .inner-cont .login-form .login-section .head {
+.container .auth .inner-cont .login-form .login-section .head,
+.container .auth .inner-signup-cont .signup-form .signup-section .head {
   width: 100%;
   height: 5vh;
   display: flex;
@@ -495,11 +500,13 @@ body {
   transform: translateY(-5rem);
 }
 
-.container .auth .inner-cont .login-form .login-section .head i {
+.container .auth .inner-cont .login-form .login-section .head i,
+.container .auth .inner-signup-cont .signup-form .signup-section .head i {
   cursor: pointer;
 }
 
-.container .auth .inner-cont .login-form .agreement {
+.container .auth .inner-cont .login-form .agreement,
+.container .auth .inner-signup-cont .signup-form .agreement {
   font-size: small;
   transform: translateY(-4.5rem);
 }
@@ -540,8 +547,55 @@ body {
   border-radius: 1.5rem;
 }
 
-.container .auth .inner-cont .login-form .login-section form input::placeholder {
-  font-size: small;
+.container .auth .inner-cont .login-form .login-section form input::placeholder,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase input::placeholder,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase input::placeholder {
+  font-size: x-small;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases {
+  width: 100%;
+  height: 12rem; 
+  transform: translateY(-2rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  input,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  input {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  i {
+  font-size: xx-large;
+  color: #24a0ed;
+  cursor: pointer;
+}
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
+  width: 8rem;
+  height: 2rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase {
+  display: none;
 }
 
 /* Ending the style for the mobile versions */
@@ -873,30 +927,56 @@ body {
   color: #24a0ed;
 }
 
-.container .auth .inner-cont .login-form {
+.container .auth .inner-cont .login-form,
+.container .auth .inner-signup-cont .signup-form {
   flex-direction: row;  
 }
 
-.container .auth .inner-cont .login-form img {
+.container .auth .inner-cont .login-form img,
+.container .auth .inner-signup-cont .signup-form img {
   transform: rotate(0deg) translate(0rem, 0rem);
   width: 20%;
   height: 100%;
 }
 
-.container .auth .inner-cont .login-form .login-section {
+.container .auth .inner-cont .login-form .login-section,
+.container .auth .inner-signup-cont .signup-form .signup-section {
   padding: 2rem;
 }
 
-.container .auth .inner-cont .login-form .login-section .head {
+.container .auth .inner-cont .login-form .login-section .head,
+.container .auth .inner-signup-cont .signup-form .signup-section .head {
   transform: translateY(0rem);
   font-size: xx-large;
   margin-bottom: 2rem;
 }
 
-.container .auth .inner-cont .login-form .agreement {
+.container .auth .inner-cont .login-form .agreement,
+.container .auth .inner-signup-cont .signup-form .agreement {
   transform: translateY(0rem);
   font-size: larger;
   margin-bottom: 8rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases {
+  width: 40%;
+  height: 18rem; 
+  transform: translateY(-2rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  input,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  input {
+  height: 3rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  i {
+  font-size: xxx-large;
+  transform: translateY(1rem);
+}
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
+  width: 10rem;
+  height: 2.5rem;
+  transform: translateY(1rem);
 }
 
 .container .auth .inner-cont .login-form .login-section form {
