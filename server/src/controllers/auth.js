@@ -1,7 +1,7 @@
-const { getPasswordForLogin } = require('../database/queries/users');
-const { comparePasswords } = require('../utils/bcrypt');
+const { getPasswordForLogin, insertUser } = require('../database/queries/users');
+const { comparePasswords, hashPassword } = require('../utils/bcrypt');
 const { generateToken } = require('../utils/jwt');
-const { loginValidation } = require('../utils/joiValidation');
+const { loginValidation, signupValidation } = require('../utils/joiValidation');
 const CustomizedError = require('../utils/customizedError');
 
 const loginController = (req, res, next) => {
@@ -29,6 +29,33 @@ const loginController = (req, res, next) => {
     });
 };
 
+const signupController = (req, res, next) => {
+  signupValidation.validateAsync(req.body)
+    .then((validatedObj) => {
+      const {
+        username, password, email, fname, lname, phone,
+      } = validatedObj;
+      hashPassword(password)
+        .then((hashed) => {
+          insertUser(username, hashed, email, fname, lname, phone)
+            .then((data) => res.json(data.rows[0]))
+            .catch((err) => {
+              console.log(err);
+              next(new CustomizedError(501, 'Not implemented!!!'));
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+          next(new CustomizedError(501, 'Not implemented!!!'));
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      next(new CustomizedError(501, 'Not implemented!!!'));
+    });
+};
+
 module.exports = {
   loginController,
+  signupController,
 };

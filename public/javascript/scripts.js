@@ -8,6 +8,7 @@ const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
 const loginSubmit = document.querySelector('#login-submit');
+const signupSubmit = document.querySelector('.signup-btn');
 const signupFormButton = document.querySelectorAll('.auth .signup');
 const nextPhase = document.querySelector('.next-section');
 
@@ -55,17 +56,55 @@ const crateAutocomplete = (array) => {
 
 // ? Creating the function which is responsible for validating the form elements.
 const validateLogin = (username, password) => {
-  const isUsernameValid = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
+  const isUsernameValid = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
   const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/.test(password);
 
   if (!isUsernameValid) {
-    window.alert('Username must be begin and end with letter or numbers, and be between 8 and 20 characters');
+    window.alert('Username must be begin and end with letter or numbers, and be between 5 and 20 characters');
   }
   if (!isPasswordValid) {
     window.alert('Password must contains one lower case letter, one upper case letter, one number and one sign, and be at least 7 characters');
   }
 
   return isPasswordValid && isUsernameValid;
+};
+
+// ? Creating the function which validates the signup form.
+const validateSignup = ({
+  username, password, confirmPassword, email, fname, lname, phone,
+}) => {
+  const isUsernameValid = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
+  const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/.test(password);
+  const isPasswordConfirmed = password === confirmPassword;
+  const isEmailValid = /^[a-zA-z0-9]?.*@[a-zA-z0-9]{1,}\.[a-zA-Z]{1,}$/.test(email);
+  const isFnameValid = /^[a-zA-Z]{3,}$/.test(fname);
+  const isLnameValid = /^[a-zA-Z]{3,}$/.test(lname);
+  const isPhoneValid = /[0-9]{10}/.test(phone);
+
+  if (!isUsernameValid) {
+    window.alert('Username must be begin and end with letter or numbers, and be between 5 and 20 characters');
+  }
+  if (!isPasswordValid) {
+    window.alert('Password must contains one lower case letter, one upper case letter, one number and one sign, and be at least 7 characters');
+  }
+  if (!isPasswordConfirmed) {
+    window.alert('Confirm password must the first entered password');
+  }
+  if (!isEmailValid) {
+    window.alert('Email must be a valid email address');
+  }
+  if (!isFnameValid) {
+    window.alert('Name must contains letters only and a minimal length of 3 characters');
+  }
+  if (!isLnameValid) {
+    window.alert('Name must contains letters only and a minimal length of 3 characters');
+  }
+  if (!isPhoneValid) {
+    window.alert('Phone must contains only numbers and must be of a length of 10 characters');
+  }
+
+  return (isUsernameValid && isPasswordValid && isPasswordConfirmed && isEmailValid)
+  && (isPhoneValid && isFnameValid && isLnameValid);
 };
 
 // ? Fetching the login form to login endpoint;
@@ -78,6 +117,39 @@ loginSubmit.addEventListener('click', () => {
       body: JSON.stringify({
         username,
         password,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        window.location.href = '/';
+      })
+      .catch((err) => console.log(err));
+  }
+});
+
+// ? Fetching the signup form to signup endpoint;
+signupSubmit.addEventListener('click', () => {
+  const username = document.querySelector('#signup-username').value;
+  const password = document.querySelector('#signup-password').value;
+  const confirmPassword = document.querySelector('#confirm-password').value;
+  const email = document.querySelector('#email').value;
+  const fname = document.querySelector('#fname').value;
+  const lname = document.querySelector('#lname').value;
+  const phone = document.querySelector('#phone').value;
+  if (validateSignup({
+    username, password, confirmPassword, email, fname, lname, phone,
+  })) {
+    fetch('/api/v1/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        fname,
+        lname,
+        phone,
       }),
       headers: {
         'Content-Type': 'application/json',
