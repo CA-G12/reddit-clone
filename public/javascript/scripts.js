@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 // ? Targeting DOM elements.
 const editIcon = document.querySelector('.edit-icon');
 const closeIcon = document.querySelector('.header-mobile .close-icon');
@@ -6,6 +7,7 @@ const sideMenuCloseIcon = document.querySelector('.mobile-side-menu .close-icon'
 const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
+const loginSubmit = document.querySelector('#login-submit');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -49,10 +51,41 @@ const crateAutocomplete = (array) => {
   });
 };
 
-// ? Creating the event listeners to activate the clickable fields in the page.
-accountBox.addEventListener('click', () => {
-  const menu = document.querySelector('.account-nav .menu');
-  menu.classList.toggle('hidden');
+// ? Creating the function which is responsible for validating the form elements.
+const validateLogin = (username, password) => {
+  const isUsernameValid = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
+  const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/.test(password);
+
+  if (!isUsernameValid) {
+    window.alert('Username must be begin and end with letter or numbers, and be between 8 and 20 characters');
+  }
+  if (!isPasswordValid) {
+    window.alert('Password must contains one lower case letter, one upper case letter, one number and one sign, and be at least 7 characters');
+  }
+
+  return isPasswordValid && isUsernameValid;
+};
+
+// ? Fetching the login form to login endpoint;
+loginSubmit.addEventListener('click', () => {
+  const username = document.querySelector('#username').value;
+  const password = document.querySelector('#password').value;
+  if (validateLogin(username, password)) {
+    fetch('/api/v1/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        window.location.href = '/';
+      })
+      .catch((err) => console.log(err));
+  }
 });
 
 // ? Creating the eventLister to add show the autocomplete on input event
@@ -75,6 +108,12 @@ fetch('/api/v1/posts')
   .then((data) => {
     loggedInToggle(data.isLoggedIn);
   });
+
+// ? Creating the event listeners to activate the clickable fields in the page.
+accountBox.addEventListener('click', () => {
+  const menu = document.querySelector('.account-nav .menu');
+  menu.classList.toggle('hidden');
+});
 
 editIcon.addEventListener('click', () => {
   const postOptions = document.querySelector('.post-options');
