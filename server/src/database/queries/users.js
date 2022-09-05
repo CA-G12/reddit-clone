@@ -8,6 +8,15 @@ const getAllUsersQuery = (value) => {
   return connection.query(sql);
 };
 
+const getPasswordForLogin = (username) => {
+  const sql = {
+    text: 'SELECT id, password FROM users WHERE username = $1',
+    values: [username],
+  };
+  return connection.query(sql);
+};
+
 module.exports = {
   getAllUsersQuery,
+  getPasswordForLogin,
 };

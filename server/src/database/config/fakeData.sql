@@ -2,7 +2,7 @@ BEGIN;
 
 INSERT INTO users(username, password, email, fname, lname, phone)
 VALUES
-('mo', 'asdfghjkl', 'hi1@hi.com', 'mohammed', 'salem', '0599000000'),
+('mohammed', '$2b$12$X4kv7j5ZcG39WgogSl16au6iMVSUxRYIZZ8VsRwv77.WDlSp.Wxt.', 'hi1@hi.com', 'mohammed', 'salem', '0599000000'),
 ('moh', 'asdfghjkl', 'hi2@hi.com', 'rami', 'salem', '0599000000'),
 ('muss', 'asdfghjkl', 'hi3@hi.com', 'keareen', 'salem', '0599000000'),
 ('mom', 'asdfghjkl', 'hi4@hi.com', 'sami', 'salem', '0599000000'),
