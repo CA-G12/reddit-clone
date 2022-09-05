@@ -7,8 +7,7 @@ const buildFakeData = require('../database/config/buildFakeData');
 const connection = require('../database/config/connection');
 
 beforeAll(() => {
-  build();
-  buildFakeData();
+  build().then(buildFakeData);
 });
 afterAll(() => connection.end());
 
