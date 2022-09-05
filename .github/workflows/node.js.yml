@@ -44,6 +44,6 @@ jobs:
     - run: npm ci
     - run: npm test
       env:
-        TEST_DB_URL: postgres://reddit_test_user:root@localhost:5432/reddit_test
+        TEST_DB_URL: postgres://user:password@localhost:5432/testing
         SECRET_KEY: MyTopConfedentialSecretKey.
         HASH_SALT: $2b$12$X4kv7j5ZcG39WgogSl16au
