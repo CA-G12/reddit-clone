@@ -4,6 +4,7 @@ const editIcon = document.querySelector('.edit-icon');
 const closeIcon = document.querySelector('.header-mobile .close-icon');
 const burgerMenu = document.querySelector('.burger-menu-icon');
 const sideMenuCloseIcon = document.querySelector('.mobile-side-menu .close-icon');
+const mobileLogout = document.querySelector('.mobile-side-menu .logout');
 const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
@@ -185,6 +186,14 @@ searchInput.forEach((input) => {
 
 // ? Sending a fetch request to logout api.
 logoutBtn.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout')
+    .then(() => {
+      console.log('here');
+      window.location.href = '/';
+    }).catch((err) => console.log(err));
+});
+
+mobileLogout.addEventListener('click', () => {
   fetch('/api/v1/auth/logout')
     .then(() => {
       console.log('here');
