@@ -623,6 +623,10 @@ body {
   margin-bottom: -90vh;
 }
 
+.container .main-content .posts {
+  width: 100%;
+}
+
 .container .main-content .posts .generate-post {
   display: none;
 }

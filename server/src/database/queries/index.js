@@ -1,5 +1,6 @@
-const { getAllPosts } = require('./posts');
+const { getAllPosts, updateVote } = require('./posts');
 
 module.exports = {
   getAllPosts,
+  updateVote,
 };

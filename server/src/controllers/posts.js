@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const { getAllPosts } = require('../database/queries');
+const { getAllPosts, updateVote } = require('../database/queries');
 
 const CustomizedError = require('../utils/customizedError');
 
@@ -28,4 +28,16 @@ const getAllPostsController = (req, res, next) => {
     });
 };
 
-module.exports = { getAllPostsController };
+const updateVotes = (req, res, next) => {
+  const { id, votes } = req.body;
+  updateVote(votes, id)
+    .then((data) => res.json({ votes: data.rows[0].votes, status: 204, msg: 'Updated successfully.' }))
+    .catch(() => {
+      next(new CustomizedError(400, 'Bad request!!!'));
+    });
+};
+
+module.exports = {
+  getAllPostsController,
+  updateVotes,
+};

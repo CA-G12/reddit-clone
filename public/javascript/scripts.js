@@ -60,8 +60,29 @@ const crateAutocomplete = (array) => {
   });
 };
 
+// ? Create upper vote function.
+const upperVoteByOne = (id, num, e) => {
+  fetch('/api/v1/posts/votes', {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      votes: num,
+    }),
+  })
+    .then((jsonData) => jsonData.json())
+    .then((data) => {
+      const votesSection = e.target.parentElement;
+      votesSection.querySelector('.vote-number').textContent = data.votes;
+    })
+    .catch((err) => console.log(err));
+};
+
 // ? Create the function which is responsible for generating the posts.
-const createPosts = (array) => {
+const createPosts = (array, isLogged) => {
   const postsContainer = document.querySelector('.posts-container');
 
   array.forEach((post) => {
@@ -88,6 +109,7 @@ const createPosts = (array) => {
 
     const usernameH3 = document.createElement('h3');
     usernameH3.classList.add('username');
+    usernameH3.textContent = post.username;
     headSection.appendChild(usernameH3);
 
     const followBtn = document.createElement('button');
@@ -111,12 +133,27 @@ const createPosts = (array) => {
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
-    votesCount.textContent = post.vote;
+    votesCount.textContent = post.votes;
     votesSection.appendChild(votesCount);
+
+    if (isLogged) {
+      upperVote.addEventListener('click', (e) => {
+        const upperOneVote = Number(post.votes) + 1;
+        upperVoteByOne(post.id, upperOneVote, e);
+        upperVote.style.pointerEvents = 'none';
+      });
+    }
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
+    if (isLogged) {
+      lowerVote.addEventListener('click', (e) => {
+        const lowerOneVote = Number(post.votes) - 1;
+        upperVoteByOne(post.id, lowerOneVote, e);
+        lowerVote.style.pointerEvents = 'none';
+      });
+    }
 
     const commentsSection = document.createElement('section');
     commentsSection.classList.add('comments');
@@ -201,6 +238,11 @@ loginSubmit.addEventListener('click', () => {
         'Content-Type': 'application/json',
       },
     })
+      .then((jsonData) => jsonData.json())
+      .then((data) => {
+        window.localStorage.setItem('username', data.username);
+        return data;
+      })
       .then(() => {
         window.location.href = '/';
       })
@@ -261,7 +303,6 @@ searchInput.forEach((input) => {
 logoutBtn.addEventListener('click', () => {
   fetch('/api/v1/auth/logout')
     .then(() => {
-      console.log('here');
       window.location.href = '/';
     }).catch((err) => console.log(err));
 });
@@ -269,7 +310,6 @@ logoutBtn.addEventListener('click', () => {
 mobileLogout.addEventListener('click', () => {
   fetch('/api/v1/auth/logout')
     .then(() => {
-      console.log('here');
       window.location.href = '/';
     }).catch((err) => console.log(err));
 });
@@ -279,6 +319,7 @@ fetch('/api/v1/posts')
   .then((jsonData) => jsonData.json())
   .then((data) => {
     loggedInToggle(data.isLoggedIn);
+    createPosts(data.rows, data.isLoggedIn);
   });
 
 // ? Creating the event listeners to activate the clickable fields in the page.
@@ -346,18 +387,20 @@ document.querySelector('.container .auth .login-section .close-icon').addEventLi
 
 let isOnline = false;
 
-if (window.localStorage.getItem('online') === 'true') {
-  const onlineBall = document.querySelector('.online-ball');
-  const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
-  const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
-  onlineStatusBox.classList.add('online');
-  onlineBall.classList.add('online');
-  postsGeneratorOnlineBall.classList.toggle('online');
-  postsOnlineBall.forEach((ball) => {
-    ball.classList.toggle('online');
-  });
-  isOnline = true;
-}
+setTimeout(() => {
+  if (window.localStorage.getItem('online') === 'true') {
+    const onlineBall = document.querySelector('.online-ball');
+    const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
+    const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
+    onlineStatusBox.classList.add('online');
+    onlineBall.classList.add('online');
+    postsGeneratorOnlineBall.classList.add('online');
+    postsOnlineBall.forEach((ball) => {
+      ball.classList.add('online');
+    });
+    isOnline = true;
+  }
+}, 200);
 
 onlineStatusBox.addEventListener('click', (e) => {
   const onlineBall = document.querySelector('.online-ball');
@@ -380,4 +423,10 @@ onlineStatusBox.addEventListener('click', (e) => {
 document.querySelector('.signup-section .close-icon').addEventListener('click', () => {
   const LoginFormElement = document.querySelector('.container .auth .inner-signup-cont');
   LoginFormElement.style.display = 'none';
+});
+
+window.addEventListener('load', () => {
+  const usernameP = document.querySelector('.account-nav .username');
+  const username = window.localStorage.getItem('username');
+  usernameP.textContent = username;
 });
