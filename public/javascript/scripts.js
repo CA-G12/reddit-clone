@@ -19,8 +19,10 @@ const onlineStatusBox = document.querySelector('.menu section.online-status');
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
   const header = document.querySelector('.header');
+  const mainContentSection = document.querySelector('.main-content');
   if (isLogged) {
     header.classList.toggle('logged-in');
+    mainContentSection.classList.add('logged-in');
   }
 };
 
@@ -273,16 +275,28 @@ let isOnline = false;
 
 if (window.localStorage.getItem('online') === 'true') {
   const onlineBall = document.querySelector('.online-ball');
+  const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
+  const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
   onlineStatusBox.classList.add('online');
   onlineBall.classList.add('online');
+  postsGeneratorOnlineBall.classList.toggle('online');
+  postsOnlineBall.forEach((ball) => {
+    ball.classList.toggle('online');
+  });
   isOnline = true;
 }
 
 onlineStatusBox.addEventListener('click', (e) => {
   const onlineBall = document.querySelector('.online-ball');
+  const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
+  const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
   isOnline = !isOnline;
   e.target.classList.toggle('online');
   onlineBall.classList.toggle('online');
+  postsGeneratorOnlineBall.classList.toggle('online');
+  postsOnlineBall.forEach((ball) => {
+    ball.classList.toggle('online');
+  });
   if (isOnline) {
     window.localStorage.setItem('online', 'true');
   } else {
