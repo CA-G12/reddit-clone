@@ -11,6 +11,8 @@ const loginSubmit = document.querySelector('#login-submit');
 const signupSubmit = document.querySelector('.signup-btn');
 const signupFormButton = document.querySelectorAll('.auth .signup');
 const nextPhase = document.querySelector('.next-section');
+const previousPhase = document.querySelector('.previous-section');
+const logoutBtn = document.querySelector('.account-nav .logout');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -50,6 +52,9 @@ const crateAutocomplete = (array) => {
       email.classList.add('email');
       email.textContent = `Email: ${row.email}`;
       innerDiv.appendChild(email);
+
+      const usernameProfile = document.querySelector('.user .username');
+      usernameProfile.textContent = row.username;
     });
   });
 };
@@ -131,6 +136,7 @@ loginSubmit.addEventListener('click', () => {
 
 // ? Fetching the signup form to signup endpoint;
 signupSubmit.addEventListener('click', () => {
+  const loginForm = document.querySelector('.login-form');
   const username = document.querySelector('#signup-username').value;
   const password = document.querySelector('#signup-password').value;
   const confirmPassword = document.querySelector('#confirm-password').value;
@@ -157,6 +163,7 @@ signupSubmit.addEventListener('click', () => {
     })
       .then(() => {
         window.location.href = '/';
+        loginForm.style.display = 'flex';
       })
       .catch((err) => console.log(err));
   }
@@ -174,6 +181,15 @@ searchInput.forEach((input) => {
         crateAutocomplete(data);
       });
   });
+});
+
+// ? Sending a fetch request to logout api.
+logoutBtn.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout')
+    .then(() => {
+      console.log('here');
+      window.location.href = '/';
+    }).catch((err) => console.log(err));
 });
 
 // ? Create the fetch function to get the posts data.
@@ -232,6 +248,13 @@ nextPhase.addEventListener('click', () => {
   const secondPhase = document.querySelector('.second-phase');
   firstPhase.style.display = 'none';
   secondPhase.style.display = 'flex';
+});
+
+previousPhase.addEventListener('click', () => {
+  const firstPhase = document.querySelector('.first-phase');
+  const secondPhase = document.querySelector('.second-phase');
+  firstPhase.style.display = 'flex';
+  secondPhase.style.display = 'none';
 });
 
 document.querySelector('.container .auth .login-section .close-icon').addEventListener('click', () => {
