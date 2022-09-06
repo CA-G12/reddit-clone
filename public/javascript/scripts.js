@@ -61,9 +61,25 @@ const crateAutocomplete = (array) => {
 };
 
 // ? Create upper vote function.
-// const upperVoteByOne = (id) => {
-//   fetch()
-// }
+const upperVoteByOne = (id, num, e) => {
+  fetch('/api/v1/posts/votes', {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      votes: num,
+    }),
+  })
+    .then((jsonData) => jsonData.json())
+    .then((data) => {
+      const votesSection = e.target.parentElement;
+      votesSection.querySelector('.vote-number').textContent = data.votes;
+    })
+    .catch((err) => console.log(err));
+};
 
 // ? Create the function which is responsible for generating the posts.
 const createPosts = (array, isLogged) => {
@@ -114,23 +130,28 @@ const createPosts = (array, isLogged) => {
     const upperVote = document.createElement('i');
     upperVote.className = 'ri-arrow-up-s-line upper-vote';
     votesSection.appendChild(upperVote);
-    if (isLogged) {
-      upperVote.addEventListener('click', () => {
-        console.log('Upper vote.');
-      });
-    }
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
-    votesCount.textContent = post.vote;
+    votesCount.textContent = post.votes;
     votesSection.appendChild(votesCount);
+
+    if (isLogged) {
+      upperVote.addEventListener('click', (e) => {
+        const upperOneVote = Number(post.votes) + 1;
+        upperVoteByOne(post.id, upperOneVote, e);
+        upperVote.style.pointerEvents = 'none';
+      });
+    }
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
     if (isLogged) {
-      lowerVote.addEventListener('click', () => {
-        console.log('Lower vote.');
+      lowerVote.addEventListener('click', (e) => {
+        const lowerOneVote = Number(post.votes) - 1;
+        upperVoteByOne(post.id, lowerOneVote, e);
+        lowerVote.style.pointerEvents = 'none';
       });
     }
 
@@ -366,18 +387,20 @@ document.querySelector('.container .auth .login-section .close-icon').addEventLi
 
 let isOnline = false;
 
-if (window.localStorage.getItem('online') === 'true') {
-  const onlineBall = document.querySelector('.online-ball');
-  const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
-  const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
-  onlineStatusBox.classList.add('online');
-  onlineBall.classList.add('online');
-  postsGeneratorOnlineBall.classList.toggle('online');
-  postsOnlineBall.forEach((ball) => {
-    ball.classList.toggle('online');
-  });
-  isOnline = true;
-}
+setTimeout(() => {
+  if (window.localStorage.getItem('online') === 'true') {
+    const onlineBall = document.querySelector('.online-ball');
+    const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
+    const postsOnlineBall = document.querySelectorAll('.posts .posts-online-ball');
+    onlineStatusBox.classList.add('online');
+    onlineBall.classList.add('online');
+    postsGeneratorOnlineBall.classList.add('online');
+    postsOnlineBall.forEach((ball) => {
+      ball.classList.add('online');
+    });
+    isOnline = true;
+  }
+}, 200);
 
 onlineStatusBox.addEventListener('click', (e) => {
   const onlineBall = document.querySelector('.online-ball');
