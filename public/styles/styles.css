@@ -584,7 +584,22 @@ body {
   color: #24a0ed;
   cursor: pointer;
 }
-.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons {
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  i {
+  font-size: xx-large;
+  color: #24a0ed;
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  button {
   width: 8rem;
   height: 2rem;
   background-color: #24a0ed;
@@ -782,6 +797,7 @@ body {
 
   .header .account-nav .menu {
     width: 15rem;
+    height: 18rem;
     position: absolute;
     right: -38px;
     top: 45px;
@@ -889,6 +905,19 @@ body {
     border-radius: 50%;
   }
 
+  .header .account-nav .menu .logout {
+    width: 70%;
+    height: 2rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #24a0ed;
+    color: var(--main-color);
+    font-size: large;
+    margin-top: 1.2rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+  }
+
   .header .auth {
     width: 40%;
     height: 100%;
@@ -972,11 +1001,23 @@ body {
 .container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  i {
   font-size: xxx-large;
   transform: translateY(1rem);
+  cursor: pointer;
 }
-.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
-  width: 10rem;
-  height: 2.5rem;
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons {
+  width: 80%;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  i {
+  font-size: xxx-large;
   transform: translateY(1rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
+  width: 12rem;
+  height: 3rem;
+  transform: translateY(1rem);
+  cursor: pointer;
 }
 
 .container .auth .inner-cont .login-form .login-section form {
@@ -994,6 +1035,7 @@ body {
   width: 40%;
   height: 2.5rem;
   font-size: large;
+  cursor: pointer;
 }
 
   .logged-in .header-mobile .edit-icon,
