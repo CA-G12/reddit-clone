@@ -60,8 +60,13 @@ const crateAutocomplete = (array) => {
   });
 };
 
+// ? Create upper vote function.
+// const upperVoteByOne = (id) => {
+//   fetch()
+// }
+
 // ? Create the function which is responsible for generating the posts.
-const createPosts = (array) => {
+const createPosts = (array, isLogged) => {
   const postsContainer = document.querySelector('.posts-container');
 
   array.forEach((post) => {
@@ -88,6 +93,7 @@ const createPosts = (array) => {
 
     const usernameH3 = document.createElement('h3');
     usernameH3.classList.add('username');
+    usernameH3.textContent = post.username;
     headSection.appendChild(usernameH3);
 
     const followBtn = document.createElement('button');
@@ -108,6 +114,11 @@ const createPosts = (array) => {
     const upperVote = document.createElement('i');
     upperVote.className = 'ri-arrow-up-s-line upper-vote';
     votesSection.appendChild(upperVote);
+    if (isLogged) {
+      upperVote.addEventListener('click', () => {
+        console.log('Upper vote.');
+      });
+    }
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
@@ -117,6 +128,11 @@ const createPosts = (array) => {
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
+    if (isLogged) {
+      lowerVote.addEventListener('click', () => {
+        console.log('Lower vote.');
+      });
+    }
 
     const commentsSection = document.createElement('section');
     commentsSection.classList.add('comments');
@@ -201,6 +217,11 @@ loginSubmit.addEventListener('click', () => {
         'Content-Type': 'application/json',
       },
     })
+      .then((jsonData) => jsonData.json())
+      .then((data) => {
+        window.localStorage.setItem('username', data.username);
+        return data;
+      })
       .then(() => {
         window.location.href = '/';
       })
@@ -261,7 +282,6 @@ searchInput.forEach((input) => {
 logoutBtn.addEventListener('click', () => {
   fetch('/api/v1/auth/logout')
     .then(() => {
-      console.log('here');
       window.location.href = '/';
     }).catch((err) => console.log(err));
 });
@@ -269,7 +289,6 @@ logoutBtn.addEventListener('click', () => {
 mobileLogout.addEventListener('click', () => {
   fetch('/api/v1/auth/logout')
     .then(() => {
-      console.log('here');
       window.location.href = '/';
     }).catch((err) => console.log(err));
 });
@@ -279,6 +298,7 @@ fetch('/api/v1/posts')
   .then((jsonData) => jsonData.json())
   .then((data) => {
     loggedInToggle(data.isLoggedIn);
+    createPosts(data.rows, data.isLoggedIn);
   });
 
 // ? Creating the event listeners to activate the clickable fields in the page.
@@ -380,4 +400,10 @@ onlineStatusBox.addEventListener('click', (e) => {
 document.querySelector('.signup-section .close-icon').addEventListener('click', () => {
   const LoginFormElement = document.querySelector('.container .auth .inner-signup-cont');
   LoginFormElement.style.display = 'none';
+});
+
+window.addEventListener('load', () => {
+  const usernameP = document.querySelector('.account-nav .username');
+  const username = window.localStorage.getItem('username');
+  usernameP.textContent = username;
 });
