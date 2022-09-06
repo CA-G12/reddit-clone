@@ -14,6 +14,7 @@ const signupFormButton = document.querySelectorAll('.auth .signup');
 const nextPhase = document.querySelector('.next-section');
 const previousPhase = document.querySelector('.previous-section');
 const logoutBtn = document.querySelector('.account-nav .logout');
+const onlineStatusBox = document.querySelector('.menu section.online-status');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -53,9 +54,6 @@ const crateAutocomplete = (array) => {
       email.classList.add('email');
       email.textContent = `Email: ${row.email}`;
       innerDiv.appendChild(email);
-
-      const usernameProfile = document.querySelector('.user .username');
-      usernameProfile.textContent = row.username;
     });
   });
 };
@@ -269,6 +267,27 @@ previousPhase.addEventListener('click', () => {
 document.querySelector('.container .auth .login-section .close-icon').addEventListener('click', () => {
   const LoginFormElement = document.querySelector('.container .auth .inner-cont');
   LoginFormElement.style.display = 'none';
+});
+
+let isOnline = false;
+
+if (window.localStorage.getItem('online') === 'true') {
+  const onlineBall = document.querySelector('.online-ball');
+  onlineStatusBox.classList.add('online');
+  onlineBall.classList.add('online');
+  isOnline = true;
+}
+
+onlineStatusBox.addEventListener('click', (e) => {
+  const onlineBall = document.querySelector('.online-ball');
+  isOnline = !isOnline;
+  e.target.classList.toggle('online');
+  onlineBall.classList.toggle('online');
+  if (isOnline) {
+    window.localStorage.setItem('online', 'true');
+  } else {
+    window.localStorage.setItem('online', 'false');
+  }
 });
 
 document.querySelector('.signup-section .close-icon').addEventListener('click', () => {

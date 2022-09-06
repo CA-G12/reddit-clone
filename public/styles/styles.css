@@ -784,6 +784,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .header .account-nav .interface img {
@@ -793,6 +794,21 @@ body {
 
   .header .account-nav .interface .username {
     margin-right: 3rem;
+  }
+
+  .header .account-nav .interface .online-ball {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.8rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(0, 177, 0);
+    display: none;
+  }
+
+  .header .account-nav .interface .online-ball.online {
+    display: block;
   }
 
   .header .account-nav .menu {
@@ -832,7 +848,7 @@ body {
   }
 
   .header .account-nav .menu .my-stuff .online-status {
-    height: 2rem;
+    height: 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -847,6 +863,11 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status.online .bar {
+    background-color: #24a0ed;
+    justify-content: flex-end;
   }
 
   .header .account-nav .menu .my-stuff .online-status .bar .ball {
