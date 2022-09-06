@@ -60,6 +60,79 @@ const crateAutocomplete = (array) => {
   });
 };
 
+// ? Create the function which is responsible for generating the posts.
+const createPosts = (array) => {
+  const postsContainer = document.querySelector('.posts-container');
+
+  array.forEach((post) => {
+    const postSection = document.createElement('section');
+    postSection.classList.add('post');
+    postsContainer.appendChild(postSection);
+
+    const headSection = document.createElement('section');
+    headSection.classList.add('head');
+    postSection.appendChild(headSection);
+
+    const avatarOnlineSection = document.createElement('section');
+    avatarOnlineSection.classList.add('avatar-online');
+    headSection.appendChild(avatarOnlineSection);
+
+    const userAvatar = document.createElement('img');
+    userAvatar.src = '/assets/avatar-reddit.png';
+    userAvatar.alt = 'user avatar';
+    avatarOnlineSection.appendChild(userAvatar);
+
+    const ballDiv = document.createElement('div');
+    ballDiv.classList.add('posts-online-ball');
+    avatarOnlineSection.appendChild(ballDiv);
+
+    const usernameH3 = document.createElement('h3');
+    usernameH3.classList.add('username');
+    headSection.appendChild(usernameH3);
+
+    const followBtn = document.createElement('button');
+    followBtn.type = 'button';
+    followBtn.classList.add('follow-btn');
+    followBtn.textContent = 'Follow';
+    headSection.appendChild(followBtn);
+
+    const postText = document.createElement('p');
+    postText.classList.add('post-text');
+    postText.textContent = post.content;
+    postSection.appendChild(postText);
+
+    const votesSection = document.createElement('section');
+    votesSection.classList.add('votes');
+    postSection.appendChild(votesSection);
+
+    const upperVote = document.createElement('i');
+    upperVote.className = 'ri-arrow-up-s-line upper-vote';
+    votesSection.appendChild(upperVote);
+
+    const votesCount = document.createElement('h4');
+    votesCount.className = 'vote-number';
+    votesCount.textContent = post.vote;
+    votesSection.appendChild(votesCount);
+
+    const lowerVote = document.createElement('i');
+    lowerVote.className = 'ri-arrow-down-s-line lower-vote';
+    votesSection.appendChild(lowerVote);
+
+    const commentsSection = document.createElement('section');
+    commentsSection.classList.add('comments');
+    postSection.appendChild(commentsSection);
+
+    const commentsIcon = document.createElement('i');
+    commentsIcon.className = 'ri-question-answer-fill comments-icon';
+    commentsSection.appendChild(commentsIcon);
+
+    const commentsWord = document.createElement('p');
+    commentsWord.classList.add('comments-text');
+    commentsWord.textContent = 'Comments';
+    commentsSection.appendChild(commentsWord);
+  });
+};
+
 // ? Creating the function which is responsible for validating the form elements.
 const validateLogin = (username, password) => {
   const isUsernameValid = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username);
