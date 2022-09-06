@@ -1,3 +1,6 @@
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
 const { getAllPosts } = require('../database/queries');
 
 const CustomizedError = require('../utils/customizedError');
@@ -5,7 +8,11 @@ const CustomizedError = require('../utils/customizedError');
 const getAllPostsController = (req, res, next) => {
   const { token } = req.cookies;
   let isLoggedIn = false;
-  if (token) isLoggedIn = true;
+
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    if (err) isLoggedIn = false;
+    if (decoded) isLoggedIn = true;
+  });
 
   getAllPosts()
     .then((data) => {

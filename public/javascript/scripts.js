@@ -4,6 +4,7 @@ const editIcon = document.querySelector('.edit-icon');
 const closeIcon = document.querySelector('.header-mobile .close-icon');
 const burgerMenu = document.querySelector('.burger-menu-icon');
 const sideMenuCloseIcon = document.querySelector('.mobile-side-menu .close-icon');
+const mobileLogout = document.querySelector('.mobile-side-menu .logout');
 const searchInput = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
@@ -11,6 +12,9 @@ const loginSubmit = document.querySelector('#login-submit');
 const signupSubmit = document.querySelector('.signup-btn');
 const signupFormButton = document.querySelectorAll('.auth .signup');
 const nextPhase = document.querySelector('.next-section');
+const previousPhase = document.querySelector('.previous-section');
+const logoutBtn = document.querySelector('.account-nav .logout');
+const onlineStatusBox = document.querySelector('.menu section.online-status');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -131,6 +135,7 @@ loginSubmit.addEventListener('click', () => {
 
 // ? Fetching the signup form to signup endpoint;
 signupSubmit.addEventListener('click', () => {
+  const loginForm = document.querySelector('.login-form');
   const username = document.querySelector('#signup-username').value;
   const password = document.querySelector('#signup-password').value;
   const confirmPassword = document.querySelector('#confirm-password').value;
@@ -157,6 +162,7 @@ signupSubmit.addEventListener('click', () => {
     })
       .then(() => {
         window.location.href = '/';
+        loginForm.style.display = 'flex';
       })
       .catch((err) => console.log(err));
   }
@@ -174,6 +180,23 @@ searchInput.forEach((input) => {
         crateAutocomplete(data);
       });
   });
+});
+
+// ? Sending a fetch request to logout api.
+logoutBtn.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout')
+    .then(() => {
+      console.log('here');
+      window.location.href = '/';
+    }).catch((err) => console.log(err));
+});
+
+mobileLogout.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout')
+    .then(() => {
+      console.log('here');
+      window.location.href = '/';
+    }).catch((err) => console.log(err));
 });
 
 // ? Create the fetch function to get the posts data.
@@ -234,9 +257,37 @@ nextPhase.addEventListener('click', () => {
   secondPhase.style.display = 'flex';
 });
 
+previousPhase.addEventListener('click', () => {
+  const firstPhase = document.querySelector('.first-phase');
+  const secondPhase = document.querySelector('.second-phase');
+  firstPhase.style.display = 'flex';
+  secondPhase.style.display = 'none';
+});
+
 document.querySelector('.container .auth .login-section .close-icon').addEventListener('click', () => {
   const LoginFormElement = document.querySelector('.container .auth .inner-cont');
   LoginFormElement.style.display = 'none';
+});
+
+let isOnline = false;
+
+if (window.localStorage.getItem('online') === 'true') {
+  const onlineBall = document.querySelector('.online-ball');
+  onlineStatusBox.classList.add('online');
+  onlineBall.classList.add('online');
+  isOnline = true;
+}
+
+onlineStatusBox.addEventListener('click', (e) => {
+  const onlineBall = document.querySelector('.online-ball');
+  isOnline = !isOnline;
+  e.target.classList.toggle('online');
+  onlineBall.classList.toggle('online');
+  if (isOnline) {
+    window.localStorage.setItem('online', 'true');
+  } else {
+    window.localStorage.setItem('online', 'false');
+  }
 });
 
 document.querySelector('.signup-section .close-icon').addEventListener('click', () => {

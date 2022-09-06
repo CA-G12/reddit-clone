@@ -101,6 +101,28 @@ describe('Testing users queries and routes.', () => {
         return done();
       });
   });
+
+  test('Testing logout endpoint', (done) => {
+    supertest(app)
+      .get('/api/v1/auth/logout')
+      .expect(302)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.headers['content-type']).toContain('json');
+        return done();
+      });
+  });
+
+  test('Testing logout endpoint', (done) => {
+    supertest(app)
+      .get('/api/v1/auth/logout')
+      .expect(302)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.msg).toBeDefined();
+        return done();
+      });
+  });
 });
 
 // it('Testing signup route', (done) => {
