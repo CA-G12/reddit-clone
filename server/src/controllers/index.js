@@ -1,4 +1,4 @@
-const { getAllPostsController } = require('./posts');
+const { getAllPostsController, updateVotes } = require('./posts');
 const { getAutoCompleteData } = require('./users');
 const { loginController, signupController, logoutController } = require('./auth');
 
@@ -8,4 +8,5 @@ module.exports = {
   loginController,
   signupController,
   logoutController,
+  updateVotes,
 };
