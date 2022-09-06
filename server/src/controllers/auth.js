@@ -56,7 +56,6 @@ const signupController = (req, res, next) => {
 };
 
 const logoutController = (req, res) => {
-  console.log('here');
   res.clearCookie('token').status(302).json({ msg: 'logged out successfully.' });
 };
 
