@@ -34,7 +34,7 @@ const getAllPostsController = (req, res, next) => {
 const updateVotes = (req, res, next) => {
   const { id, votes } = req.body;
   updateVote(votes, id)
-    .then((data) => res.json({ votes: data.rows[0].votes, status: 204, msg: 'Updated successfully.' }))
+    .then((data) => res.status(204).json({ votes: data.rows[0].votes, status: 204, msg: 'Updated successfully.' }))
     .catch(() => {
       next(new CustomizedError(400, 'Bad request!!!'));
     });

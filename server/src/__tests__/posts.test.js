@@ -49,4 +49,26 @@ describe('Testing posts queries and routes.', () => {
         return done();
       });
   });
+
+  it('Testing post generator endpoint', (done) => {
+    supertest(app)
+      .get('/api/v1/posts/generator')
+      .expect(401)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.id).toBeFalsy();
+        return done(err);
+      });
+  });
+
+  it('Testing post generator endpoint', (done) => {
+    supertest(app)
+      .post('/api/v1/posts/new')
+      .expect(401)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.id).toBeFalsy();
+        return done(err);
+      });
+  });
 });

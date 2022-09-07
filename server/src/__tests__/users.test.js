@@ -123,23 +123,34 @@ describe('Testing users queries and routes.', () => {
         return done();
       });
   });
-});
 
-// it('Testing signup route', (done) => {
-//   supertest(app)
-//     .post('/api/v1/auth/signup')
-//     .send({
-//       username: 'Khalil',
-//       password: 'Hii@111',
-//       email: 'hi1@hi2.com',
-//       fname: 'Mohammed',
-//       lname: 'Rami',
-//       phone: '0599000000',
-//     })
-//     .end((err, res) => {
-//       console.log(res.body);
-//       if (err) return done(err);
-//       expect(res.body.username).toBe('Khalil');
-//       return done();
-//     });
-// });
+  it('Testing votes controller', (done) => {
+    supertest(app)
+      .patch('/api/v1/posts/votes')
+      .expect(204)
+      .send({
+        votes: 20,
+        id: 3,
+      })
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body instanceof Object).toBe(true);
+        return done();
+      });
+  });
+
+  it('Testing votes controller', (done) => {
+    supertest(app)
+      .patch('/api/v1/posts/votes')
+      .expect(204)
+      .send({
+        votes: 25,
+        id: 5,
+      })
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body instanceof Object).toBe(true);
+        return done();
+      });
+  });
+});
