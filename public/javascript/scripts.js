@@ -15,6 +15,9 @@ const nextPhase = document.querySelector('.next-section');
 const previousPhase = document.querySelector('.previous-section');
 const logoutBtn = document.querySelector('.account-nav .logout');
 const onlineStatusBox = document.querySelector('.menu section.online-status');
+const textPost = document.querySelector('.post-options .text');
+const linkPost = document.querySelector('.post-options .link');
+const postGeneratorCloseIcon = document.querySelector('.mobile-post-container .close-icon');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -429,4 +432,19 @@ window.addEventListener('load', () => {
   const usernameP = document.querySelector('.account-nav .username');
   const username = window.localStorage.getItem('username');
   usernameP.textContent = username;
+});
+
+textPost.addEventListener('click', () => {
+  const postGeneratorBox = document.querySelector('.mobile-post-container');
+  postGeneratorBox.style.display = 'block';
+});
+
+linkPost.addEventListener('click', () => {
+  const postGeneratorBox = document.querySelector('.mobile-post-container');
+  postGeneratorBox.style.display = 'block';
+});
+
+postGeneratorCloseIcon.addEventListener('click', () => {
+  const postGeneratorBox = document.querySelector('.mobile-post-container');
+  postGeneratorBox.style.display = 'none';
 });
