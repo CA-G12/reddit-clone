@@ -1,8 +1,13 @@
 const router = require('express').Router();
 
-const { getAllPostsController, updateVotes } = require('../controllers');
+const {
+  getAllPostsController, updateVotes, getPostGeneratorPage, addNewPost,
+} = require('../controllers');
+const { verifyAccessToken } = require('../utils/jwt');
 
-router.get('/posts', getAllPostsController);
-router.patch('/posts/votes', updateVotes);
+router.get('/', getAllPostsController);
+router.patch('/votes', updateVotes);
+router.get('/generator', verifyAccessToken, getPostGeneratorPage);
+router.post('/new', verifyAccessToken, addNewPost);
 
 module.exports = router;
