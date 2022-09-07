@@ -18,6 +18,10 @@ const onlineStatusBox = document.querySelector('.menu section.online-status');
 const textPost = document.querySelector('.post-options .text');
 const linkPost = document.querySelector('.post-options .link');
 const postGeneratorCloseIcon = document.querySelector('.mobile-post-container .close-icon');
+const postGeneratorSection = document.querySelector('.generate-post');
+const addNewIcon = document.querySelector('.add-icon');
+const scrollButton = document.querySelector('.back-to-top');
+scrollButton.style.display = 'none';
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -324,6 +328,21 @@ fetch('/api/v1/posts')
     loggedInToggle(data.isLoggedIn);
     createPosts(data.rows, data.isLoggedIn);
   });
+
+// ? Fetch request for post creator page.
+postGeneratorSection.addEventListener('click', () => {
+  fetch('/api/v1/posts/generator')
+    .then(() => {
+      window.location.href = '/api/v1/posts/generator';
+    });
+});
+
+addNewIcon.addEventListener('click', () => {
+  fetch('/api/v1/posts/generator')
+    .then(() => {
+      window.location.href = '/api/v1/posts/generator';
+    });
+});
 
 // ? Creating the event listeners to activate the clickable fields in the page.
 accountBox.addEventListener('click', () => {
