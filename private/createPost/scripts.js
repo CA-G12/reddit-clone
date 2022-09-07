@@ -3,15 +3,13 @@ const accountBox = document.querySelector('.account-nav .interface');
 const onlineStatusBox = document.querySelector('.menu section.online-status');
 const onlineBall = document.querySelector('.online-ball');
 const addNewIcon = document.querySelector('.add-icon');
+const logout = document.querySelector('.logout');
 const postButton = document.querySelector('.post');
 
 // ? Creating post validation function.
-const validatePostInputs = () => {
-  const title = document.querySelector('#title');
-  const textArea = document.querySelector('.content');
-
-  const isTitleValid = /[a-zA-Z0-9]{3, 300}/.test(title.value);
-  const isTextAreaValid = /.+/.test(textArea.value);
+const validatePostInputs = (title, content) => {
+  const isTitleValid = /[a-zA-Z0-9]{3,300}/.test(title);
+  const isTextAreaValid = /.+/.test(content);
 
   return isTitleValid && isTextAreaValid;
 };
@@ -103,11 +101,25 @@ addNewIcon.addEventListener('click', () => {
 
 // ? Sending a post request to add new endpoint.
 postButton.addEventListener('click', () => {
-  if (validatePostInputs()) {
-    fetch('/api/v1/posts/new')
+  const title = document.querySelector('#title').value;
+  const content = document.querySelector('#content').value;
+  const id = localStorage.getItem('id');
+  if (validatePostInputs(title, content)) {
+    fetch('/api/v1/posts/new', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        id,
+      }),
+    })
       .then((jsonData) => jsonData.json())
       .then((data) => {
-        if (data.rowsCount) {
+        if (data.msg) {
           window.location.href = '/api/v1/posts/generator';
           window.alert('New post was added!');
         }
@@ -116,4 +128,12 @@ postButton.addEventListener('click', () => {
   } else {
     window.alert("Can't be empty, make sure to enter a valid value.");
   }
+});
+
+// ? Sending a fetch request to logout api.
+logout.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout')
+    .then(() => {
+      window.location.href = '/';
+    }).catch((err) => console.log(err));
 });
