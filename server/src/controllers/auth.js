@@ -13,7 +13,7 @@ const loginController = (req, res, next) => {
           comparePasswords(validObj.password, row.password)
             .then(() => generateToken({ id: row.id, username: req.body.username }, (err, token) => {
               if (err) next(new CustomizedError(401, 'Wrong Credentials'));
-              res.cookie('token', token).json({ username: req.body.username });
+              res.cookie('token', token).json({ username: req.body.username, id: row.id });
             }));
         }).catch((err) => {
           console.log(err, 'here1');

@@ -1,9 +1,12 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const { getAllPosts, updateVote } = require('../database/queries');
+const { join } = require('path');
+
+const { getAllPosts, updateVote, insertNewPost } = require('../database/queries');
 
 const CustomizedError = require('../utils/customizedError');
+const { postValidation } = require('../utils/joiValidation');
 
 const getAllPostsController = (req, res, next) => {
   const { token } = req.cookies;
@@ -22,8 +25,8 @@ const getAllPostsController = (req, res, next) => {
       };
       res.json(returnedObj);
     })
-    .catch((error) => {
-      console.log(error, 'getAllPostsController!!!');
+    .catch((err) => {
+      console.log(err);
       next(new CustomizedError(400, 'Bad query request!'));
     });
 };
@@ -37,7 +40,29 @@ const updateVotes = (req, res, next) => {
     });
 };
 
+const getPostGeneratorPage = (req, res) => {
+  res.status(200).sendFile(join(__dirname, '..', '..', '..', 'private', 'createPost', 'index.html'));
+};
+
+const addNewPost = (req, res, next) => {
+  // const { title, content, id } = req.body;
+  postValidation.validateAsync(req.body)
+    .then((obj) => {
+      insertNewPost(obj.content, obj.id)
+        .then((data) => res.json({ msg: `${data.rowCount} was added successfully!!!` }))
+        .catch((err) => {
+          console.log(err);
+          next(new CustomizedError(401, 'Not authenticated!!!'));
+        });
+    }).catch((err) => {
+      console.log(err);
+      next(new CustomizedError(401, 'Not authenticated!!!'));
+    });
+};
+
 module.exports = {
   getAllPostsController,
   updateVotes,
+  getPostGeneratorPage,
+  addNewPost,
 };
