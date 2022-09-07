@@ -33,7 +33,7 @@ describe('Testing users queries and routes.', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body[0].email).toBe('hi3@hi.com');
+        expect(typeof res.body[0].email).toBe('string');
         return done();
       });
   });
