@@ -248,6 +248,7 @@ loginSubmit.addEventListener('click', () => {
       .then((jsonData) => jsonData.json())
       .then((data) => {
         window.localStorage.setItem('username', data.username);
+        window.localStorage.setItem('id', data.id);
         return data;
       })
       .then(() => {

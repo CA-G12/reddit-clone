@@ -19,7 +19,14 @@ const signupValidation = Joi.object({
   phone: Joi.string().length(10).regex(/[0-9]{10}/),
 });
 
+const postValidation = Joi.object({
+  title: Joi.string().min(3).max(300).required(),
+  content: Joi.string().min(1).required(),
+  id: Joi.number(),
+});
+
 module.exports = {
   loginValidation,
   signupValidation,
+  postValidation,
 };
