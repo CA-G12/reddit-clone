@@ -749,6 +749,79 @@ body {
   display: none;
 }
 
+.mobile-post-container {
+  width: 100%;
+  height: 100vh;
+  padding: 1rem 0.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 120;
+  background-color: #FCFCFB;
+  display: none;
+}
+
+.mobile-post-container .post-header {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-post-container .post-header .inner {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-post-container .post-header .inner .close-icon {
+  font-size: xx-large;
+  color: #CCCCCA;
+}
+
+.mobile-post-container .post-header .inner .text-word {
+  font-size: large;
+  color: #727272;
+}
+
+.mobile-post-container .post-header .post-button {
+  width: 4rem;
+  height: 2rem;
+  background-color: #dcdcdc;
+  color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.mobile-post-container .inputs {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mobile-post-container .inputs input {
+  width: 100%;
+  height: 2.5rem;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1F1F20;
+  outline: none;
+}
+
+.mobile-post-container .inputs textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1F1F20;
+  outline: none;
+}
+
 /* Ending the style for the mobile versions */
 
 /* Starting the style for the desktop versions */
@@ -1448,6 +1521,10 @@ body {
 
   .container .main-content .side-content .popular-container .create-post-button:hover {
     opacity: 1;
+  }
+
+  .mobile-post-container {
+    display: none;
   }
 }
 
