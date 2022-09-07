@@ -67,29 +67,31 @@ const crateAutocomplete = (array) => {
   });
 };
 
-// ? Create upper vote function.
-const upperVoteByOne = (id, num, e) => {
-  fetch('/api/v1/posts/votes', {
-    method: 'PATCH',
-    headers: {
-      Accept: 'application/json',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      id,
-      votes: num,
-    }),
-  })
-    .then((jsonData) => jsonData.json())
-    .then((data) => {
-      const votesSection = e.target.parentElement;
-      votesSection.querySelector('.vote-number').textContent = data.votes;
-    })
-    .catch((err) => console.log(err));
-};
+// // ? Create upper vote function.
+// const upperVoteByOne = (id, num, content, userId, e) => {
+//   fetch('/api/v1/posts/votes', {
+//     method: 'PATCH',
+//     headers: {
+//       Accept: 'application/json',
+//       'content-type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       id,
+//       content,
+//       votes: num,
+//       userId,
+//     }),
+//   })
+//     .then((jsonData) => jsonData.json())
+//     .then((data) => {
+//       const votesSection = e.target.parentElement;
+//       votesSection.querySelector('.vote-number').textContent = data.votes;
+//     })
+//     .catch((err) => console.log(err));
+// };
 
 // ? Create the function which is responsible for generating the posts.
-const createPosts = (array, isLogged) => {
+const createPosts = (array) => {
   const postsContainer = document.querySelector('.posts-container');
 
   array.forEach((post) => {
@@ -125,6 +127,11 @@ const createPosts = (array, isLogged) => {
     followBtn.textContent = 'Follow';
     headSection.appendChild(followBtn);
 
+    const title = document.createElement('h4');
+    title.classList.add('post-title');
+    title.textContent = post.title;
+    postSection.appendChild(title);
+
     const postText = document.createElement('p');
     postText.classList.add('post-text');
     postText.textContent = post.content;
@@ -140,27 +147,27 @@ const createPosts = (array, isLogged) => {
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
-    votesCount.textContent = post.votes;
+    votesCount.textContent = post.votes || 0;
     votesSection.appendChild(votesCount);
 
-    if (isLogged) {
-      upperVote.addEventListener('click', (e) => {
-        const upperOneVote = Number(post.votes) + 1;
-        upperVoteByOne(post.id, upperOneVote, e);
-        upperVote.style.pointerEvents = 'none';
-      });
-    }
+    // if (isLogged) {
+    //   upperVote.addEventListener('click', (e) => {
+    //     const upperOneVote = Number(post.votes) + 1;
+    //     upperVoteByOne(post.id, upperOneVote, e);
+    //     upperVote.style.pointerEvents = 'none';
+    //   });
+    // }
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
-    if (isLogged) {
-      lowerVote.addEventListener('click', (e) => {
-        const lowerOneVote = Number(post.votes) - 1;
-        upperVoteByOne(post.id, lowerOneVote, e);
-        lowerVote.style.pointerEvents = 'none';
-      });
-    }
+    // if (isLogged) {
+    //   lowerVote.addEventListener('click', (e) => {
+    //     const lowerOneVote = Number(post.votes) - 1;
+    //     upperVoteByOne(post.id, lowerOneVote, e);
+    //     lowerVote.style.pointerEvents = 'none';
+    //   });
+    // }
 
     const commentsSection = document.createElement('section');
     commentsSection.classList.add('comments');
