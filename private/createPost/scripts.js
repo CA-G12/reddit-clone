@@ -5,6 +5,7 @@ const onlineBall = document.querySelector('.online-ball');
 const addNewIcon = document.querySelector('.add-icon');
 const logout = document.querySelector('.logout');
 const postButton = document.querySelector('.post');
+const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
 
 // ? Creating post validation function.
 const validatePostInputs = (title, content) => {
@@ -25,6 +26,12 @@ const crateAutocomplete = (array) => {
       optionDiv.classList.add('option');
       optionDiv.setAttribute('data-id', row.id);
       ele.appendChild(optionDiv);
+      optionDiv.addEventListener('click', () => {
+        fetch(`/api/v1/users/profile?username=${row.username}`)
+          .then(() => {
+            window.location.href = `/api/v1/users/profile?username=${row.username}`;
+          }).catch((err) => console.log(err));
+      });
 
       const fullName = document.createElement('p');
       fullName.classList.add('full-name');
@@ -136,4 +143,16 @@ logout.addEventListener('click', () => {
     .then(() => {
       window.location.href = '/';
     }).catch((err) => console.log(err));
+});
+
+emptySearchIcons.forEach((icon) => {
+  icon.addEventListener('click', (e) => {
+    document.querySelectorAll('.autocomplete').forEach((box) => {
+      const autoBox = box;
+      autoBox.textContent = '';
+      autoBox.style.display = 'none';
+    });
+    searchInput.value = '';
+    e.target.style.display = 'none';
+  });
 });
