@@ -5,7 +5,7 @@ const closeIcon = document.querySelector('.header-mobile .close-icon');
 const burgerMenu = document.querySelector('.burger-menu-icon');
 const sideMenuCloseIcon = document.querySelector('.mobile-side-menu .close-icon');
 const mobileLogout = document.querySelector('.mobile-side-menu .logout');
-const searchInput = document.querySelectorAll('[name="search"]');
+const searchInputs = document.querySelectorAll('[name="search"]');
 const accountBox = document.querySelector('.account-nav .interface');
 const loginButtons = document.querySelectorAll('.auth .login');
 const loginSubmit = document.querySelector('#login-submit');
@@ -20,6 +20,7 @@ const linkPost = document.querySelector('.post-options .link');
 const postGeneratorCloseIcon = document.querySelector('.mobile-post-container .close-icon');
 const postGeneratorSection = document.querySelector('.generate-post');
 const addNewIcon = document.querySelector('.add-icon');
+const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -42,6 +43,12 @@ const crateAutocomplete = (array) => {
       optionDiv.classList.add('option');
       optionDiv.setAttribute('data-id', row.id);
       ele.appendChild(optionDiv);
+      optionDiv.addEventListener('click', () => {
+        fetch(`/api/v1/users/profile?username=${row.username}`)
+          .then(() => {
+            window.location.href = `/api/v1/users/profile?username=${row.username}`;
+          }).catch((err) => console.log(err));
+      });
 
       const fullName = document.createElement('p');
       fullName.classList.add('full-name');
@@ -272,7 +279,7 @@ const validateSignup = ({
 fetch('/api/v1/posts')
   .then((jsonData) => jsonData.json())
   .then((data) => {
-    // console.log(data.rows);
+    console.log(data.rows);
     loggedInToggle(data.isLoggedIn);
     createPosts(data.rows, data.isLoggedIn);
   });
@@ -342,7 +349,7 @@ signupSubmit.addEventListener('click', () => {
 
 // ? Creating the eventLister to add show the autocomplete on input event
 // ? and Fetching the data on the /api/v1/users/autocomplete endpoint.
-searchInput.forEach((input) => {
+searchInputs.forEach((input) => {
   input.addEventListener('input', (e) => {
     fetch(`/api/v1/users/autocomplete?value=${e.target.value}`)
       .then((jsonData) => jsonData.json())
@@ -503,4 +510,19 @@ linkPost.addEventListener('click', () => {
 postGeneratorCloseIcon.addEventListener('click', () => {
   const postGeneratorBox = document.querySelector('.mobile-post-container');
   postGeneratorBox.style.display = 'none';
+});
+
+emptySearchIcons.forEach((icon) => {
+  icon.addEventListener('click', (e) => {
+    document.querySelectorAll('.autocomplete').forEach((box) => {
+      const autoBox = box;
+      autoBox.textContent = '';
+      autoBox.style.display = 'none';
+    });
+    searchInputs.forEach((input) => {
+      const search = input;
+      search.value = '';
+    });
+    e.target.style.display = 'none';
+  });
 });
