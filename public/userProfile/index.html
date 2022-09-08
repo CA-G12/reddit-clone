@@ -6,18 +6,438 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- Reddit favicon. -->
-  <link rel="shortcut icon" href="../assets/reddit-icon.png" type="image/png">
+  <link rel="shortcut icon" href="/public/assets/reddit-icon.png" type="image/png">
   <!-- Google fonts: Open sans and IBM Plex Sans. -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link 
   href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=Open+Sans:wght@400;700&display=swap" 
   rel="stylesheet"
 >
+<!-- Remix icons library. -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <!-- Main stylesheet. -->
-<link rel="stylesheet" href="/userProfile/styles.css">
+<link rel="stylesheet" href="/public/userProfile/styles.css">
   <title>Reddit</title>
 </head>
 <body>
-  <script src="/userProfile/scripts.js"></script>
+  <div class="container">
+    <header class="header">
+      <section class="logo">
+        <i class="ri-reddit-fill reddit-icon"></i>
+        <h1 class="reddit-text">
+          reddit
+          <span class="reddit-dot"></span>
+        </h1>
+      </section>
+      <section class="search-box">
+        <i class="ri-search-line search-icon"></i>
+        <input 
+          type="text" 
+          name="search"
+          autocomplete="off"
+          id="search" 
+          class="search" 
+          placeholder="Search Reddit" 
+          aria-label="search bar" 
+        />
+        <section class="autocomplete" 
+        id="autocomplete-mobile"></section>
+        <i class="ri-close-line close-icon"></i>
+      </section>
+      <section class="auth">
+        <button type="button" class="login">Log In</button>
+        <button type="button" class="signup">Sign Up</button>
+      </section>
+      <section class="header-mobile">
+        <button type="button" class="use-app">Use App</button>
+        <i class="ri-close-line close-icon"></i>
+        <i class="ri-menu-5-fill burger-menu-icon"></i>
+      </section>
+      <section class="mobile-side-menu">
+        <section class="head">
+          <section class="logo">
+            <i class="ri-reddit-fill reddit-icon"></i>
+            <h1 class="reddit-text">
+              reddit
+              <span class="reddit-dot"></span>
+            </h1>
+          </section>
+          <section class="end">
+            <button type="button" class="use-app-nav">Use App</button>
+          <i class="ri-close-line close-icon"></i>
+          </section>
+        </section>
+        <section class="search-box">
+          <i class="ri-search-line search-icon"></i>
+          <input 
+            type="text" 
+            name="search"
+            autocomplete="off"
+            id="search" 
+            class="search" 
+            placeholder="Search Reddit" 
+            aria-label="search bar" 
+          />
+          <section class="autocomplete" 
+          id="autocomplete-mobile"></section>
+          <i class="ri-close-line close-icon"></i>
+        </section>
+        <section class="auth">
+          <button type="button" class="login">Log In</button>
+          <button type="button" class="signup">Sign Up</button>
+        </section>
+      </section>
+    </header>
+    <main class="main-content">
+      <section class="posts-container">
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="title"> Hello peopleeee</p>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="title"> Hello peopleeee</p>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="title"> Hello peopleeee</p>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="title"> Hello peopleeee</p>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+        <section class="post">
+          <section class="head">
+            <section class="avatar-online">
+              <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+              <div class="posts-online-ball"></div>
+            </section>
+            <h2 class="username">Mosstaf</h2>
+            <button type="button" class="follow-btn">Follow</button>
+          </section>
+          <p class="post-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+            accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+            laborum ullam. Nihil explicabo id natus.
+          </p>
+          <section class="votes">
+            <i class="ri-arrow-up-s-line upper-vote"></i>
+            <h4 class="vote-number">50</h4>
+            <i class="ri-arrow-down-s-line lower-vote"></i>
+          </section>
+          <section class="comments">
+            <i class="ri-question-answer-fill comments-icon"></i>
+            <p class="comments-text">Comments</p>
+          </section>
+        </section>
+      </section>
+      <aside class="user-info">
+        <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+        <h1 class="name">Mustafa Salem</h1>
+        <h3 class="username">u/moustf</h3>
+        <h5 class="email">e/tepro.18@gmail.com</h5>
+        <section class="buttons">
+          <button type="button" class="follow">Follow</button>
+          <button type="button" class="chat">Chat</button>
+        </section>
+      </aside>
+    </main>
+    <section class="auth outer-auth">
+      <section class="inner-cont">
+        <section class="login-form">
+          <img 
+          src="https://www.redditstatic.com/accountmanager/bbb584033aa89e39bad69436c504c9bd.png" 
+          alt="login image"
+          class="image"
+          />
+          <section class="login-section">
+            <section class="head">
+              <h1 class="title">Login</h1>
+              <i class="ri-close-line close-icon"></i>
+            </section>
+            <p class="agreement">
+              By continuing, you agree to 
+              <a href="https://www.redditinc.com/policies/user-agreement" class="user-ag">User Agreement</a>
+              and
+              <a href="https://www.reddit.com/policies/privacy-policy" class="privacy">Privacy Policy</a>.
+            </p>
+            <form method="post">
+              <input type="text" name="username" id="username" placeholder="USERNAME" aria-label="username" required />
+              <input type="password" name="password" id="password" placeholder="PASSWORD" aria-label="password" required />
+            </form>
+            <button id="login-submit">Login</button>
+          </section>
+        </section>
+      </section>
+      <section class="inner-signup-cont">
+        <section class="signup-form">
+          <img 
+          src="https://www.redditstatic.com/accountmanager/bbb584033aa89e39bad69436c504c9bd.png" 
+          alt="login image"
+          class="image"
+          />
+          <section class="signup-section">
+            <section class="head">
+              <h1 class="title">Signup</h1>
+              <i class="ri-close-line close-icon"></i>
+            </section>
+            <p class="agreement">
+              By continuing, you agree to 
+              <a href="https://www.redditinc.com/policies/user-agreement" class="user-ag">User Agreement</a>
+              and
+              <a href="https://www.reddit.com/policies/privacy-policy" class="privacy">Privacy Policy</a>.
+            </p>
+            <section class="signup-phases">
+              <section class="first-phase">
+                <input 
+                  type="text" 
+                  id="signup-username" 
+                  name="signupUsername" 
+                  placeholder="USERNAME" 
+                  aria-label="username" 
+                  required 
+                />
+                <input
+                  type="password" 
+                  id="signup-password" 
+                  name="signupPaswword" 
+                  placeholder="PASSWORD"
+                  aria-label="password" 
+                  required 
+                />
+                <input
+                  type="password" 
+                  name="confirmPassword" 
+                  id="confirm-password" 
+                  placeholder="CONFIRM PASSWORD"
+                  aria-label="confirm password" 
+                  required 
+                />
+                <i class="ri-arrow-right-circle-fill next-section"></i>
+              </section>
+              <section class="second-phase">
+                <input 
+                  type="email" 
+                  name="email" 
+                  id="email"
+                  placeholder="EMAIL"
+                  aria-label="email input"
+                  required
+                />
+                <input 
+                  type="text" 
+                  name="fname" 
+                  id="fname"
+                  placeholder="FIRST NAME"
+                  aria-label="first name input"
+                  required
+                />
+                <input 
+                  type="text" 
+                  name="lname" 
+                  id="lname" 
+                  placeholder="LAST NAME"
+                  aria-label="last name input"
+                  required
+                />
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  id="phone" 
+                  placeholder="0590000000"
+                  aria-label="phone input"
+                />
+                <section class="buttons">
+                  <i class="ri-arrow-left-circle-fill previous-section"></i>
+                  <button class="signup-btn" type="button">Signup</button>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </div>
+  <script src="/public/userProfile/scripts.js"></script>
 </body>
 </html>
