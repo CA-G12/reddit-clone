@@ -147,8 +147,8 @@ const createPosts = (array, isLogged) => {
     followBtn.textContent = 'Follow';
     headSection.appendChild(followBtn);
 
-    const title = document.createElement('h4');
-    title.classList.add('post-title');
+    const title = document.createElement('p');
+    title.classList.add('title');
     title.textContent = post.title;
     postSection.appendChild(title);
 
