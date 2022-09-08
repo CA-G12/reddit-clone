@@ -1,5 +1,5 @@
-const { getAllUsersQuery } = require('../database/queries/users');
-const CustomizedError = require('../utils/customizedError');
+const { getAllUsersQuery } = require('../../database/queries/users');
+const CustomizedError = require('../../utils/customizedError');
 
 const getAutoCompleteData = (req, res, next) => {
   const { value } = req.query;

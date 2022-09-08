@@ -10,26 +10,36 @@ VALUES
 ('mohi', 'asdfghjkl', 'hi6@hi.com', 'karam', 'salem', '0599000000'),
 ('moar', 'asdfghjkl', 'hi7@hi.com', 'sayed', 'salem', '0599000000');
 
-INSERT INTO posts(content, votes, user_id)
+INSERT INTO posts(title, content, user_id)
 VALUES
-('hello, it me mustafa from post num #1', 45, 1),
-('hello, it me mustafa from post num #2', 33, 2),
-('hello, it me mustafa from post num #3', 23, 3),
-('hello, it me mustafa from post num #4', 55, 4),
-('hello, it me mustafa from post num #5', 77, 5),
-('hello, it me mustafa from post num #6', 89, 6),
-('hello, it me mustafa from post num #7', 46, 7);
+('From fake data', 'hello, it me mustafa from post num #1', 1),
+('From fake data', 'hello, it me mustafa from post num #2', 2),
+('From fake data', 'hello, it me mustafa from post num #3', 3),
+('From fake data', 'hello, it me mustafa from post num #4', 4),
+('From fake data', 'hello, it me mustafa from post num #5', 5),
+('From fake data', 'hello, it me mustafa from post num #6', 6),
+('From fake data', 'hello, it me mustafa from post num #7', 7);
 
-INSERT INTO comments(content, votes, post_id)
+INSERT INTO comments(content, post_id)
 VALUES
-('hello, it me mustafa from comment num #1', 45, 1),
-('hello, it me mustafa from comment num #2', 33, 2),
-('hello, it me mustafa from comment num #3', 23, 3),
-('hello, it me mustafa from comment num #4', 55, 4),
-('hello, it me mustafa from comment num #5', 77, 5),
-('hello, it me mustafa from comment num #6', 77, 5),
-('hello, it me mustafa from comment num #7', 77, 5),
-('hello, it me mustafa from comment num #8', 89, 6),
-('hello, it me mustafa from comment num #9', 46, 7);
+('hello, it me mustafa from comment num #1', 1),
+('hello, it me mustafa from comment num #2', 2),
+('hello, it me mustafa from comment num #3', 3),
+('hello, it me mustafa from comment num #4', 4),
+('hello, it me mustafa from comment num #5', 5),
+('hello, it me mustafa from comment num #6', 5),
+('hello, it me mustafa from comment num #7', 5),
+('hello, it me mustafa from comment num #8', 6),
+('hello, it me mustafa from comment num #9', 7);
+
+INSERT INTO votes(kind, user_id, post_id)
+VALUES
+('upper', 1, 1),
+('lower', 2, 2),
+('upper', 3, 3),
+('lower', 4, 4),
+('upper', 5, 5),
+('lower', 6, 6),
+('upper', 7, 7);
 
 COMMIT;

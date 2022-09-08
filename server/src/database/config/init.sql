@@ -1,6 +1,7 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, posts, comments CASCADE;
+DROP TABLE IF EXISTS users, posts, comments, votes CASCADE;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(100) UNIQUE,
@@ -13,8 +14,8 @@ CREATE TABLE users (
 
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
+  title VARCHAR(300) NOT NULL,
   content TEXT NOT NULL,
-  votes INT,
   user_id INT NOT NULL,
   CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -22,9 +23,17 @@ CREATE TABLE posts (
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   content TEXT NOT NULL,
-  votes INT,
   post_id INT NOT NULL,
-  CONSTRAINT fs_post_id FOREIGN KEY(post_id) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT fk_post_id FOREIGN KEY(post_id) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE votes (
+  id SERIAL PRIMARY KEY,
+  kind VARCHAR(10) NOT NULL,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  CONSTRAINT fk_votes_post_id FOREIGN KEY(post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_votes_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 COMMIT;
