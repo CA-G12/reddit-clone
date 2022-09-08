@@ -1,7 +1,8 @@
 const { updateVotes, getVotesByPost } = require('./votes');
-const { getPostGeneratorPage } = require('./pages');
+const { getPostGeneratorPage, getUsersProfile } = require('./pages');
 const { getAllPostsController, addNewPost } = require('./posts');
 const { getAutoCompleteData } = require('./users');
+const { handleProfileInfo } = require('./general');
 const { loginController, signupController, logoutController } = require('./auth');
 
 module.exports = {
@@ -12,6 +13,8 @@ module.exports = {
   logoutController,
   updateVotes,
   getPostGeneratorPage,
+  getUsersProfile,
   addNewPost,
   getVotesByPost,
+  handleProfileInfo,
 };
