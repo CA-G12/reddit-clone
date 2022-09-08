@@ -10,6 +10,12 @@ const previousPhase = document.querySelector('.previous-section');
 const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
 const loginSubmit = document.querySelector('#login-submit');
 const signupSubmit = document.querySelector('.signup-btn');
+const accountBox = document.querySelector('.account-nav .interface');
+const onlineStatusBox = document.querySelector('.menu section.online-status');
+const onlineBall = document.querySelector('.online-ball');
+const mobileLogout = document.querySelector('.mobile-side-menu .logout');
+const logoutBtn = document.querySelector('.account-nav .logout');
+const addNewIcon = document.querySelector('.add-icon');
 
 const getUsername = () => window.location.href.split('=')[1];
 
@@ -237,9 +243,13 @@ sideMenuCloseIcon.addEventListener('click', () => {
 // ? Fetching user profile data.
 fetch(`/api/v1/profileInfo?username=${getUsername()}`)
   .then((jsonData) => jsonData.json())
-  .then((data) => {
+  .then((response) => {
+    const { isLoggedIn, data } = response;
     createPosts(data);
     renderUserInfo(data[0]);
+    if (isLoggedIn) {
+      document.querySelector('.header').classList.add('logged-in');
+    }
   }).catch((err) => console.log(err));
 
 // ? Creating the function which validates the signup form.
@@ -317,7 +327,7 @@ loginSubmit.addEventListener('click', () => {
         return data;
       })
       .then(() => {
-        window.location.href = '/';
+        window.location.href = `/api/v1/users/profile?username=${getUsername()}`;
       })
       .catch((err) => console.log(err));
   }
@@ -351,7 +361,7 @@ signupSubmit.addEventListener('click', () => {
       },
     })
       .then(() => {
-        window.location.href = '/';
+        window.location.href = `/api/v1/users/profile?username=${getUsername()}`;
         loginForm.style.display = 'flex';
       })
       .catch((err) => console.log(err));
@@ -390,6 +400,12 @@ signupFormButtons.forEach((button) => {
   });
 });
 
+// ? Creating the event listeners to activate the clickable fields in the page.
+accountBox.addEventListener('click', () => {
+  const menu = document.querySelector('.account-nav .menu');
+  menu.classList.toggle('hidden');
+});
+
 nextPhase.addEventListener('click', () => {
   nextOrPrevious(true);
 });
@@ -421,4 +437,50 @@ emptySearchIcons.forEach((icon) => {
     });
     e.target.style.display = 'none';
   });
+});
+
+// ? Fetch request for post creator page.
+addNewIcon.addEventListener('click', () => {
+  fetch('/api/v1/posts/generator')
+    .then(() => {
+      window.location.href = '/api/v1/posts/generator';
+    });
+});
+
+// ? Sending a fetch request to logout endpoint.
+[logoutBtn, mobileLogout].forEach((btn) => {
+  btn.addEventListener('click', () => {
+    fetch('/api/v1/auth/logout')
+      .then(() => {
+        window.location.href = `/api/v1/users/profile?username=${getUsername()}`;
+      }).catch((err) => console.log(err));
+  });
+});
+
+window.addEventListener('load', () => {
+  const usernameP = document.querySelector('.account-nav .username');
+  const username = window.localStorage.getItem('username');
+  usernameP.textContent = username;
+});
+
+let isOnline = false;
+
+if (window.localStorage.getItem('online') === 'true') {
+  onlineStatusBox.classList.add('online');
+  onlineBall.classList.add('online');
+  isOnline = true;
+} else {
+  onlineStatusBox.classList.remove('online');
+  onlineBall.classList.remove('online');
+}
+
+onlineStatusBox.addEventListener('click', (e) => {
+  isOnline = !isOnline;
+  e.target.classList.toggle('online');
+  onlineBall.classList.toggle('online');
+  if (isOnline) {
+    window.localStorage.setItem('online', 'true');
+  } else {
+    window.localStorage.setItem('online', 'false');
+  }
 });
