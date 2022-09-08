@@ -133,32 +133,17 @@ body {
   z-index: 3;
 }
 
-.header .search-box {
-  display: none;
-}
-
-.header .auth {
-  display: none;
-}
-
 .header .header-mobile {
   width: 30%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--main-color);
 }
 
-.header .header-mobile i {
-  color: #a5a4a4;
-  font-size: x-large;
-  cursor: pointer;
+.logged-in .header-mobile {
+  width: 20%;
 }
-
-.header .header-mobile .close-icon {
-  display: none;
-}
-
 
 .header .header-mobile .use-app {
   width: 4.2rem;
@@ -171,9 +156,72 @@ body {
   text-align: center;
   line-height: 1.5rem;
   border-radius: 2rem;
-  cursor: pointer;
 }
 
+.logged-in .header-mobile .use-app {
+  display: none;
+}
+
+.header .header-mobile .edit-icon,
+.header .header-mobile .close-icon ,
+.header .header-mobile .burger-menu-icon {
+  color: var(--main-color);
+  font-size: x-large;
+}
+
+.header .header-mobile .edit-icon {
+  display: none;
+}
+
+.logged-in .header-mobile .edit-icon {
+  display: block;
+}
+
+.header .header-mobile .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+  display: none;
+}
+
+.header .post-options {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--main-color);
+  border-top: 1px solid #efefed;
+  position: absolute;
+  left: 0;
+  top: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  box-shadow: 0px 12px 7px 0px rgba(246,247,248,.7);
+  display: none;
+}
+
+.header .post-options .text,
+.header .post-options .link {
+  width: 30%;
+  height: 58%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .post-options .text .text-icon,
+.header .post-options .link .link-icon {
+  width: 60px;
+  font-size: 60px;
+  color: #24a0ed;
+}
+
+.header .post-options .text .inner-text,
+.header .post-options .link .inner-text {
+  color: #a5a4a4;
+  font-size: small;
+  font-weight: 300;
+}
 
 .header .mobile-side-menu {
   width: 100%;
@@ -200,13 +248,8 @@ body {
   margin-bottom: 1rem;
 }
 
-.header .mobile-side-menu .head {
-  width: 100%;
-  height: 5vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+.logged-in .mobile-side-menu .head {
+  margin-bottom: 0.2rem;
 }
 
 .header .mobile-side-menu .head .logo .reddit-text .reddit-dot {
@@ -215,32 +258,9 @@ body {
   left: 2.2rem;
 }
 
-.header .mobile-side-menu .head .end {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.header .mobile-side-menu .head .end .close-icon {
+.header .mobile-side-menu .head .close-icon {
   color: #a5a4a4;
   font-size: xx-large;
-  cursor: pointer;
-}
-
-.header .mobile-side-menu .head .end .use-app-nav {
-  width: 4.2rem;
-  height: 1.5rem;
-  background-color: var(--identity-color);
-  color: var(--main-color);
-  font-size: small;
-  font-weight: 600;
-  border: none;
-  text-align: center;
-  line-height: 1.5rem;
-  border-radius: 2rem;
-  cursor: pointer;
 }
 
 .header .mobile-side-menu .search-box {
@@ -249,6 +269,10 @@ body {
   height: 3vh;
   position: relative;
   margin-bottom: 2rem;
+}
+
+.logged-in .mobile-side-menu .search-box {
+  margin-bottom: 0.3rem;
 }
 
 .header .mobile-side-menu .search-box .search-icon {
@@ -325,6 +349,33 @@ body {
   display: none;
 }
 
+.header .mobile-side-menu .user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.logged-in .mobile-side-menu .user {
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.header .mobile-side-menu .user img {
+  width: 32px;
+  height: 32px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.header .mobile-side-menu .user .username {
+  font-weight: 700;
+  font-size: large;
+}
+
+
 .header .mobile-side-menu .auth {
   display: block;
   width: 100%;
@@ -352,6 +403,51 @@ body {
   background-color: var(--main-color);
   border: 1px solid #24a0ed;
   color: #24a0ed;
+}
+
+.logged-in .mobile-side-menu .auth {
+  display: none;
+}
+
+.header .mobile-side-menu .logout {
+  display: none;
+}
+
+.logged-in .mobile-side-menu .logout {
+  display: block;
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #24a0ed;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 1rem;
+}
+
+.header .header-navigator {
+  display: none;
+}
+
+.header .search-box {
+  display: none;
+}
+
+.header .auth {
+  display: none;
+}
+
+.header .icons {
+  display: none;
+}
+
+.header .shop-avatars {
+  display: none;
+}
+
+.header .account-nav {
+  display: none;
 }
 
 .container .main-content {
@@ -708,7 +804,7 @@ body {
 /* Starting the style for the desktop versions */
 
 @media only screen and (min-width: 569px) {
-    .header {
+  .header {
     padding: 5px 1rem;
     background-color: var(--main-color);
     justify-content: flex-start;
@@ -724,6 +820,32 @@ body {
 
   .header .logo .reddit-text {
     color: var(--third-color);
+  }
+
+  .header .header-navigator {
+    width: 15%;
+    height: 100%;
+    padding: 0.2rem 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+  }
+
+  .logged-in .header-navigator {
+    display: flex;
+  }
+
+  .header .header-navigator:hover {
+    cursor: pointer;
+    border: 0.2px solid #a5a4a4;
+  }
+
+  .header .header-navigator .first-part {
+    width: 28%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .header .search-box {
@@ -776,6 +898,233 @@ body {
     display: none;
   }
 
+  .header .icons {
+    display: block;
+    width: 15%;
+    height: 100%;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+  }
+
+  .logged-in .icons {
+    display: flex;
+  }
+
+  .header .icons i {
+    width: 32px;
+    height: 32px;
+    font-size: x-large;
+    color: #404041;
+    border: 1px solid #404041;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .header .shop-avatars {
+    width: 7rem;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    background-image: linear-gradient(to right, #5450DA , #B556C0);
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: small;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    display: none;
+  }
+
+  .logged-in .shop-avatars {
+    display: flex;
+  }
+
+  .header .account-nav {
+    width: 12rem;
+    margin-left: 1rem;
+    display: block;
+    align-self: flex-start;
+    position: relative;
+    display: none;
+  }
+
+  .logged-in .account-nav {
+    display: flex;
+  }
+
+  .header .account-nav:hover {
+    cursor: pointer;
+    border: 0.2px solid #a5a4a4;
+  }
+
+  .header .account-nav .interface {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .header .account-nav .interface img {
+    width: 32px;
+    margin-right: 1rem;
+  }
+
+  .header .account-nav .interface .username {
+    margin-right: 3rem;
+  }
+
+  .header .account-nav .interface .online-ball {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.8rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(0, 177, 0);
+    display: none;
+  }
+
+  .header .account-nav .interface .online-ball.online {
+    display: block;
+  }
+
+  .header .account-nav .menu {
+    width: 15rem;
+    height: 18rem;
+    position: absolute;
+    right: -38px;
+    top: 45px;
+    background-color: var(--main-color);
+    padding: 1rem;
+    font-size: medium;
+    font-weight: 600;
+  }
+
+  .header .account-nav .menu.hidden {
+    display: none;
+  }
+
+  .header .account-nav .menu .my-stuff {
+    width: 100%;
+    height: 6.5rem;
+    border-bottom: 1px solid #adadad;
+    margin-bottom: 1rem;
+  }
+
+  .header .account-nav .menu .my-stuff .head {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #7C8082;
+  }
+
+  .header .account-nav .menu .my-stuff .head i {
+    font-size: larger;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status .bar {
+    width: 2.5rem;
+    height: 1.5rem;
+    background-color: #ddd;
+    padding: 0 0.1rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status.online .bar {
+    background-color: #24a0ed;
+    justify-content: flex-end;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status .bar .ball {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  .header .account-nav .menu .my-stuff .profile {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .view-options {
+    width: 100%;
+    height: 5rem;
+    border-bottom: 1px solid #adadad;
+  }
+
+  .header .account-nav .menu .view-options .head {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #7C8082;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .account-nav .menu .view-options .theme {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .account-nav .menu .view-options .theme .bar {
+    width: 2.5rem;
+    height: 1.5rem;
+    background-color: #ddd;
+    padding: 0 0.1rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .view-options .theme .bar .ball {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  .header .account-nav .menu .logout {
+    width: 70%;
+    height: 2rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #24a0ed;
+    color: var(--main-color);
+    font-size: large;
+    margin-top: 1.2rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+  }
+
   .header .auth {
     width: 40%;
     height: 100%;
@@ -808,11 +1157,11 @@ body {
     opacity: 1;
 }
 
-  .header .auth .login {
-    background-color: var(--main-color);
-    border: 1px solid #24a0ed;
-    color: #24a0ed;
-  }
+.header .auth .login {
+  background-color: var(--main-color);
+  border: 1px solid #24a0ed;
+  color: #24a0ed;
+}
 
   .container .main-content {
     width: 70%;
