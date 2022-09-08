@@ -11,51 +11,54 @@ beforeAll(() => {
 });
 afterAll(() => connection.end());
 
-describe('Testing users queries and routes.', () => {
-  it('2 * 2 equals 4', () => {
-    expect(2 * 2).toBe(4);
-  });
-
-  it('Should return an array', (done) => {
+describe('Testing auth paths', () => {
+  it('Should return the username if the password is correct', (done) => {
     supertest(app)
-      .get('/api/v1/users/autocomplete?value=muss')
-      .expect(200)
+      .post('/api/v1/auth/login')
+      .send({ username: 'hanisal', password: 'mmMM!111' })
       .end((err, res) => {
         if (err) return done(err);
-        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.status).toBe(401);
         return done();
       });
   });
 
-  it('Should return rows which matched the username', (done) => {
+  it('Testing signup route', (done) => {
     supertest(app)
-      .get('/api/v1/users/autocomplete?value=muss')
-      .expect(200)
+      .post('/api/v1/auth/signup')
+      .send({
+        username: 'Khalil',
+        password: 'Hii@111',
+        email: 'hi1@hi2.com',
+        fname: 'Mohammed',
+        lname: 'Rami',
+        phone: '0599000000',
+      })
       .end((err, res) => {
         if (err) return done(err);
-        expect(typeof res.body[0].email).toBe('string');
+        expect(res.statusCode).toBe(201);
         return done();
       });
   });
 
-  it('Should return an array', (done) => {
+  test('Testing logout endpoint', (done) => {
     supertest(app)
-      .get('/api/v1/users/autocomplete?value=muss')
-      .expect(200)
+      .get('/api/v1/auth/logout')
+      .expect(302)
       .end((err, res) => {
         if (err) return done(err);
-        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.headers['content-type']).toContain('json');
         return done();
       });
   });
 
-  it('Should return rows which matched the username', (done) => {
+  test('Testing logout endpoint', (done) => {
     supertest(app)
-      .get('/api/v1/users/autocomplete?value=muss')
-      .expect(200)
+      .get('/api/v1/auth/logout')
+      .expect(302)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body[0].email).toBe('hi3@hi.com');
+        expect(res.body.msg).toBeDefined();
         return done();
       });
   });
