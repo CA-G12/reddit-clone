@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-// ? Targeting DOM elements.
+
 const editIcon = document.querySelector('.edit-icon');
 const closeIcon = document.querySelector('.header-mobile .close-icon');
 const burgerMenu = document.querySelector('.burger-menu-icon');
@@ -20,8 +20,6 @@ const linkPost = document.querySelector('.post-options .link');
 const postGeneratorCloseIcon = document.querySelector('.mobile-post-container .close-icon');
 const postGeneratorSection = document.querySelector('.generate-post');
 const addNewIcon = document.querySelector('.add-icon');
-const scrollButton = document.querySelector('.back-to-top');
-scrollButton.style.display = 'none';
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
@@ -37,8 +35,8 @@ const loggedInToggle = (isLogged) => {
 const crateAutocomplete = (array) => {
   const autocompleteElements = document.querySelectorAll('.autocomplete');
   autocompleteElements.forEach((ele) => {
-    // eslint-disable-next-line no-param-reassign
-    ele.innerHTML = '';
+    const element = ele;
+    element.innerHTML = '';
     array.forEach((row) => {
       const optionDiv = document.createElement('div');
       optionDiv.classList.add('option');
@@ -67,31 +65,53 @@ const crateAutocomplete = (array) => {
   });
 };
 
-// // ? Create upper vote function.
-// const upperVoteByOne = (id, num, content, userId, e) => {
-//   fetch('/api/v1/posts/votes', {
-//     method: 'PATCH',
-//     headers: {
-//       Accept: 'application/json',
-//       'content-type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       id,
-//       content,
-//       votes: num,
-//       userId,
-//     }),
-//   })
-//     .then((jsonData) => jsonData.json())
-//     .then((data) => {
-//       const votesSection = e.target.parentElement;
-//       votesSection.querySelector('.vote-number').textContent = data.votes;
-//     })
-//     .catch((err) => console.log(err));
-// };
+// ? Create upper vote function.
+const updateVote = (id, kind, uId, pId, e) => {
+  fetch('/api/v1/posts/votes', {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      kind,
+      userId: uId,
+      postId: pId,
+    }),
+  })
+    .then((jsonData) => jsonData.json())
+    .then((data) => {
+      if (data.kind === 'upper' && e.target.classList.contains('upper-vote')) {
+        e.target.style.pointerEvents = 'none';
+      }
+      if (data.kind === 'lower' && e.target.classList.contains('lower-vote')) {
+        e.target.style.pointerEvents = 'none';
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
+// ? Creating the function which is responsible for getting the votes count.
+const getVotesCount = (id, selector) => {
+  fetch('/api/v1/posts/get-votes', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+    }),
+  }).then((jsonData) => jsonData.json())
+    .then((data) => {
+      document.querySelector(selector).textContent = data.votes || 0;
+    })
+    .catch((err) => console.log(err));
+};
 
 // ? Create the function which is responsible for generating the posts.
-const createPosts = (array) => {
+const createPosts = (array, isLogged) => {
   const postsContainer = document.querySelector('.posts-container');
 
   array.forEach((post) => {
@@ -147,27 +167,38 @@ const createPosts = (array) => {
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
-    votesCount.textContent = post.votes || 0;
+    votesCount.setAttribute('data-id', post.id);
     votesSection.appendChild(votesCount);
 
-    // if (isLogged) {
-    //   upperVote.addEventListener('click', (e) => {
-    //     const upperOneVote = Number(post.votes) + 1;
-    //     upperVoteByOne(post.id, upperOneVote, e);
-    //     upperVote.style.pointerEvents = 'none';
-    //   });
-    // }
+    // ? Calling getVotesCount to get tht votes for the post from the database query.
+    getVotesCount(post.id, `[data-id="${post.id}"]`);
+
+    if (isLogged) {
+      upperVote.addEventListener('click', (e) => {
+        updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
+        // ? Updating the votes count.
+        getVotesCount(post.id, `[data-id="${post.id}"]`);
+      });
+    }
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
-    // if (isLogged) {
-    //   lowerVote.addEventListener('click', (e) => {
-    //     const lowerOneVote = Number(post.votes) - 1;
-    //     upperVoteByOne(post.id, lowerOneVote, e);
-    //     lowerVote.style.pointerEvents = 'none';
-    //   });
-    // }
+
+    if (isLogged) {
+      lowerVote.addEventListener('click', (e) => {
+        updateVote(post.vote_id, 'lower', post.user_id, post.post_id, e);
+        // ? Updating the votes count.
+        getVotesCount(post.id, `[data-id="${post.id}"]`);
+      });
+    }
+
+    if (post.kind === 'upper') {
+      upperVote.style.pointerEvents = 'none';
+    }
+    if (post.kind === 'lower') {
+      lowerVote.style.pointerEvents = 'none';
+    }
 
     const commentsSection = document.createElement('section');
     commentsSection.classList.add('comments');
@@ -236,6 +267,15 @@ const validateSignup = ({
   return (isUsernameValid && isPasswordValid && isPasswordConfirmed && isEmailValid)
   && (isPhoneValid && isFnameValid && isLnameValid);
 };
+
+// ? Create the fetch function to get the posts data.
+fetch('/api/v1/posts')
+  .then((jsonData) => jsonData.json())
+  .then((data) => {
+    // console.log(data.rows);
+    loggedInToggle(data.isLoggedIn);
+    createPosts(data.rows, data.isLoggedIn);
+  });
 
 // ? Fetching the login form to login endpoint;
 loginSubmit.addEventListener('click', () => {
@@ -314,42 +354,24 @@ searchInput.forEach((input) => {
   });
 });
 
-// ? Sending a fetch request to logout api.
-logoutBtn.addEventListener('click', () => {
-  fetch('/api/v1/auth/logout')
-    .then(() => {
-      window.location.href = '/';
-    }).catch((err) => console.log(err));
-});
-
-mobileLogout.addEventListener('click', () => {
-  fetch('/api/v1/auth/logout')
-    .then(() => {
-      window.location.href = '/';
-    }).catch((err) => console.log(err));
-});
-
-// ? Create the fetch function to get the posts data.
-fetch('/api/v1/posts')
-  .then((jsonData) => jsonData.json())
-  .then((data) => {
-    loggedInToggle(data.isLoggedIn);
-    createPosts(data.rows, data.isLoggedIn);
+// ? Sending a fetch request to logout endpoint.
+[logoutBtn, mobileLogout].forEach((btn) => {
+  btn.addEventListener('click', () => {
+    fetch('/api/v1/auth/logout')
+      .then(() => {
+        window.location.href = '/';
+      }).catch((err) => console.log(err));
   });
+});
 
 // ? Fetch request for post creator page.
-postGeneratorSection.addEventListener('click', () => {
-  fetch('/api/v1/posts/generator')
-    .then(() => {
-      window.location.href = '/api/v1/posts/generator';
-    });
-});
-
-addNewIcon.addEventListener('click', () => {
-  fetch('/api/v1/posts/generator')
-    .then(() => {
-      window.location.href = '/api/v1/posts/generator';
-    });
+[postGeneratorSection, addNewIcon].forEach((icon) => {
+  icon.addEventListener('click', () => {
+    fetch('/api/v1/posts/generator')
+      .then(() => {
+        window.location.href = '/api/v1/posts/generator';
+      });
+  });
 });
 
 // ? Creating the event listeners to activate the clickable fields in the page.
@@ -358,28 +380,32 @@ accountBox.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 });
 
-editIcon.addEventListener('click', () => {
+const showPostOptions = (show) => {
   const postOptions = document.querySelector('.post-options');
-  editIcon.style.display = 'none';
-  closeIcon.style.display = 'block';
-  postOptions.style.display = 'flex';
+  editIcon.style.display = show ? 'none' : 'block';
+  closeIcon.style.display = show ? 'block' : 'none';
+  postOptions.style.display = show ? 'flex' : 'none';
+};
+
+editIcon.addEventListener('click', () => {
+  showPostOptions(true);
 });
 
 closeIcon.addEventListener('click', () => {
-  const postOptions = document.querySelector('.post-options');
-  editIcon.style.display = 'block';
-  closeIcon.style.display = 'none';
-  postOptions.style.display = 'none';
+  showPostOptions(false);
 });
 
-burgerMenu.addEventListener('click', () => {
+const showSideMenu = (show) => {
   const mobileSideMenu = document.querySelector('.mobile-side-menu');
-  mobileSideMenu.style.display = 'flex';
+  mobileSideMenu.style.display = show ? 'flex' : 'none';
+};
+
+burgerMenu.addEventListener('click', () => {
+  showSideMenu(true);
 });
 
 sideMenuCloseIcon.addEventListener('click', () => {
-  const mobileSideMenu = document.querySelector('.mobile-side-menu');
-  mobileSideMenu.style.display = 'none';
+  showSideMenu(false);
 });
 
 loginButtons.forEach((button) => {
@@ -396,18 +422,19 @@ signupFormButton.forEach((button) => {
   });
 });
 
-nextPhase.addEventListener('click', () => {
+const nextOrPrevious = (isNext) => {
   const firstPhase = document.querySelector('.first-phase');
   const secondPhase = document.querySelector('.second-phase');
-  firstPhase.style.display = 'none';
-  secondPhase.style.display = 'flex';
+  firstPhase.style.display = isNext ? 'none' : 'flex';
+  secondPhase.style.display = isNext ? 'flex' : 'none';
+};
+
+nextPhase.addEventListener('click', () => {
+  nextOrPrevious(true);
 });
 
 previousPhase.addEventListener('click', () => {
-  const firstPhase = document.querySelector('.first-phase');
-  const secondPhase = document.querySelector('.second-phase');
-  firstPhase.style.display = 'flex';
-  secondPhase.style.display = 'none';
+  nextOrPrevious(false);
 });
 
 document.querySelector('.container .auth .login-section .close-icon').addEventListener('click', () => {
@@ -415,8 +442,10 @@ document.querySelector('.container .auth .login-section .close-icon').addEventLi
   LoginFormElement.style.display = 'none';
 });
 
+// ? Creating the online ball functionality.
 let isOnline = false;
 
+// ? This setTimeOut's aim is to wait until the elements are rendered in the page.
 setTimeout(() => {
   if (window.localStorage.getItem('online') === 'true') {
     const onlineBall = document.querySelector('.online-ball');
