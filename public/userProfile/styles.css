@@ -48,3 +48,908 @@ button {
 }
 
 /* Ending the styles reset. */
+
+/* Starting the general style */
+
+:root {
+  --main-color: #ffffff;
+  --secondary-color: #DAE0E6;
+  --third-color: #222222;
+  --forth-color: #1D2535;
+  --identity-color: #F14C26;
+}
+
+html {
+  line-height: 16px;
+}
+
+body {
+  width: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Ending the general style */
+
+/* Starting the style for the mobile versions */
+
+
+.header {
+  width: 100%;
+  height: 48px;
+  background-color: var(--forth-color);
+  position: fixed;
+  z-index: 100;
+  padding: 5px 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header .logo .reddit-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3rem;
+  font-size: 2.5rem;
+  color: var(--identity-color);
+  background-color: var(--main-color);
+  margin-right: 5px;
+}
+
+.header .logo .reddit-text {
+  color: var(--main-color);
+  position: relative;
+}
+
+.header .logo .reddit-text .reddit-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--identity-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 3.3rem;
+  top: 1px;
+  z-index: 3;
+}
+
+.header .search-box {
+  display: none;
+}
+
+.header .auth {
+  display: none;
+}
+
+.header .header-mobile {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--main-color);
+}
+
+.header .header-mobile i {
+  color: #a5a4a4;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.header .header-mobile .close-icon {
+  display: none;
+}
+
+
+.header .header-mobile .use-app {
+  width: 4.2rem;
+  height: 1.5rem;
+  background-color: var(--identity-color);
+  color: var(--main-color);
+  font-size: small;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  line-height: 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+
+.header .mobile-side-menu {
+  width: 100%;
+  height: 40vh;
+  background-color: var(--forth-color);
+  color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  display: none;
+}
+
+.header .mobile-side-menu .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header .mobile-side-menu .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header .mobile-side-menu .head .logo .reddit-text .reddit-dot {
+  width: 4px;
+  height: 4px;
+  left: 2.2rem;
+}
+
+.header .mobile-side-menu .head .end {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header .mobile-side-menu .head .end .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+.header .mobile-side-menu .head .end .use-app-nav {
+  width: 4.2rem;
+  height: 1.5rem;
+  background-color: var(--identity-color);
+  color: var(--main-color);
+  font-size: small;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  line-height: 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.header .mobile-side-menu .search-box {
+  display: block;
+  width: 100%;
+  height: 3vh;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.header .mobile-side-menu .search-box .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 0.9vh;
+  z-index: 5;
+}
+
+.header .mobile-side-menu .search-box .search {
+  width: 100%;
+  height: 4vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  padding-left: 2rem;
+  background-color: rgba(246,247,248,.1);
+  border: none;
+  border-radius: 1rem;
+}
+
+.header .autocomplete {
+  width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 30px;
+  z-index: 20;
+  color: var(--third-color);
+  display: none;
+}
+
+.header .autocomplete .option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #7C8082;
+  margin-bottom: 01rem;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.header .autocomplete .option .full-name {
+  font-weight: 600;
+}
+.header .autocomplete .option .inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 2rem;
+  font-size: small;
+  font-weight: 600;
+}
+
+.header .mobile-side-menu .search-box .search:focus {
+  outline: none;
+  border: none;
+}
+
+.header .mobile-side-menu .search-box .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 0.5vh;
+  z-index: 5;
+  background-color: #a5a4a4;
+  border-radius: 50%;
+  display: none;
+}
+
+.header .mobile-side-menu .auth {
+  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .mobile-side-menu .auth .login,
+.header .mobile-side-menu .auth .signup {
+  display: block;
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  border: none;
+  cursor: pointer;
+}
+
+.header .mobile-side-menu .auth .login {
+  margin-bottom: 1rem;
+  background-color: var(--main-color);
+  border: 1px solid #24a0ed;
+  color: #24a0ed;
+}
+
+.container .main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 5rem 0rem 2rem;
+}
+
+.container .main-content .posts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.container .main-content .posts-container .post {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--main-color);
+}
+
+.container .main-content .posts-container .post .head {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.container .main-content .posts-container .post .head .avatar-online {
+  width: 2.5rem;
+  position: relative;
+}
+
+.container .main-content .posts-container .post .head .avatar-online .posts-online-ball {
+  width: 8px;
+  height: 8px;
+  background-color: rgb(0, 177, 0);
+  border-radius: 50%;
+  position: absolute;
+  left: 1.2rem;
+  bottom: 0.2rem;
+  display: none;
+}
+
+.container .main-content .posts-container .post .head .avatar-online .posts-online-ball.online {
+  display: block;
+}
+
+.container .main-content .posts-container .post .head .username {
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.container .main-content .posts-container .post .head .follow-btn {
+  width: 5rem;
+  height: 1.5rem;
+  font-size: small;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.container .main-content .posts-container .post .head .follow-btn:hover {
+  opacity: 1;
+}
+
+.container .main-content .posts-container .post .title {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-size: 1.3rem;
+  color: #494949;
+  font-weight: 600;
+}
+
+.container .main-content .posts-container .post .post-text {
+  font-size: 0.9rem;
+  line-height: 20px;
+  line-break: loose;
+  color: #494949;
+  opacity: 0.6;
+}
+
+.container .main-content .posts-container .post .votes {
+  width: 8rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container .main-content .posts-container .post .votes i {
+  width: 1.3rem;
+  height: 2rem;
+  color: #585858;
+  border: 1px solid #585858;
+  font-weight: 700;
+  font-size: large;
+  border-radius: 0.2rem;
+  padding-top: 0.2rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.container .main-content .posts-container .post .votes .vote-number {
+  font-size: 0.9rem;
+}
+
+.container .main-content .posts-container .post .comments {
+  display: inline-flex;
+  width: 8rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: #585858;
+  opacity: 0.8;
+  transform: translateY(0.7rem);
+  cursor: pointer;
+}
+
+.container .main-content .user-info {
+  width: 95%;
+  height: 35vh;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--main-color);
+  color: #494949;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.container .main-content .user-info img {
+  width: 112px;
+  height: 112px;
+  border: 2px solid var(--secondary-color);
+}
+
+.container .main-content .user-info .name {
+  font-size: 1.1rem;
+  margin-left: 0.3rem;
+}
+
+.container .main-content .user-info .username,
+.container .main-content .user-info .email {
+  font-size: small;
+  margin-left: 0.3rem;
+}
+
+.container .main-content .user-info .buttons {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .main-content .user-info .buttons .follow,
+.container .main-content .user-info .buttons .chat {
+  width: 45%;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.container .main-content .user-info .buttons .follow:hover,
+.container .main-content .user-info .buttons .chat:hover {
+  opacity: 1;
+}
+
+.container .auth {
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+
+.container .auth .inner-cont,
+.container .auth .inner-signup-cont  {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.container .auth .inner-cont .login-form,
+.container .auth .inner-signup-cont .signup-form {
+  width: 60%;
+  height: 60%;
+  background-color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.container .auth .inner-cont .login-form img,
+.container .auth .inner-signup-cont .signup-form img {
+  transform: rotate(90deg) translate(-3.4rem, -3.3rem);
+  width: 128px;
+  height: 235px;
+}
+
+.container .auth .inner-cont .login-form .login-section,
+.container .auth .inner-signup-cont .signup-form .signup-section {
+  width: 100%;
+  padding: 1rem;
+}
+
+.container .auth .inner-cont .login-form .login-section .head,
+.container .auth .inner-signup-cont .signup-form .signup-section .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+  transform: translateY(-5rem);
+}
+
+.container .auth .inner-cont .login-form .login-section .head i,
+.container .auth .inner-signup-cont .signup-form .signup-section .head i {
+  cursor: pointer;
+}
+
+.container .auth .inner-cont .login-form .agreement,
+.container .auth .inner-signup-cont .signup-form .agreement {
+  font-size: small;
+  transform: translateY(-4.5rem);
+}
+
+.container .auth .inner-cont .login-form .login-section form {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input:hover,
+.container .auth .inner-cont .login-form .login-section form input:active {
+  outline: 1px solid var(--third-color);
+  border: none;
+}
+
+.container .auth .inner-cont .login-form .login-section button {
+  width: 80%;
+  height: 2rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  font-size: medium;
+  font-weight: 600;
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.container .auth .inner-cont .login-form .login-section form input::placeholder,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase input::placeholder,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase input::placeholder {
+  font-size: x-small;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases {
+  width: 100%;
+  height: 12rem; 
+  transform: translateY(-2rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  input,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  input {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  i {
+  font-size: xx-large;
+  color: #24a0ed;
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons {
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  i {
+  font-size: xx-large;
+  color: #24a0ed;
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  button {
+  width: 8rem;
+  height: 2rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase {
+  display: none;
+}
+
+/* Ending the style for the mobile versions */
+
+/* Starting the style for the desktop versions */
+
+@media only screen and (min-width: 569px) {
+    .header {
+    padding: 5px 1rem;
+    background-color: var(--main-color);
+    justify-content: flex-start;
+  }
+
+  .header .header-mobile {
+    display: none;
+  }
+
+  .header .logo {
+    width: 10%;
+  }
+
+  .header .logo .reddit-text {
+    color: var(--third-color);
+  }
+
+  .header .search-box {
+    display: block;
+    width: 40%;
+    height: 90%;
+    position: relative;
+    background-color: var(--third-color);
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 3px 5px solid #DAE0E6;
+  }
+
+  .header .search-box .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 0.7vh;
+    z-index: 5;
+    padding-right: 1rem;
+    cursor: pointer;
+  }
+
+  .header .search-box .search {
+    width: 100%;
+    height: 100%;
+    padding-left: 3rem;
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background-color: #e7e9ec;
+  }
+
+  ::placeholder {
+    color: #585858;
+  }
+
+  .header .autocomplete {
+    height: 20rem;
+  }
+
+  .header .search-box .close-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 10px;
+    color: #136394;
+    font-size: x-large;
+    cursor: pointer;
+    display: none;
+  }
+
+  .header .auth {
+    width: 40%;
+    height: 100%;
+    margin-left: 10rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .header .auth .login,
+  .header .auth .signup {
+    display: block;
+    width: 15rem;
+    height: 2.2rem;
+    font-weight: 700;
+    background-color: #24a0ed;
+    color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    margin-left: 3rem;
+    border-radius: 1rem;
+    opacity: 0.9;
+}
+
+  .logged-in .auth {
+    display: none;
+  }
+
+  .header .auth .login:hover,
+  .header .auth .signup:hover {
+    opacity: 1;
+}
+
+  .header .auth .login {
+    background-color: var(--main-color);
+    border: 1px solid #24a0ed;
+    color: #24a0ed;
+  }
+
+  .container .main-content {
+    width: 70%;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .container .main-content .user-info {
+    width: 40%;
+    height: 30vh;
+  }
+
+
+  .container .main-content .posts-container .post .head {
+    gap: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .container .main-content .posts-container .post .head .username {
+    font-size: 1.2rem !important;
+  }
+
+  .container .main-content .posts-container .post .head .follow-btn {
+    width: 7rem !important;
+    height: 2rem !important;
+  }
+
+  .container .main-content .posts-container .post .title {
+    font-size: 1.5rem;
+  }
+
+  .container .main-content .posts-container .post .post-text {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .container .main-content .posts-container .post .votes {
+    margin-bottom: 1rem !important;
+  }
+
+  .container .main-content .posts-container .post .votes i {
+    width: 1.7rem !important;
+    font-size: x-large !important;
+  }
+
+  .container .main-content .posts-container .post .votes .vote-number {
+    font-size: 1.13rem !important;
+  }
+
+  .container .main-content .posts-container .post .comments {
+    font-size: 1.2rem;
+    margin-bottom: 1rem !important;
+  }
+
+  .container .auth .inner-cont .login-form,
+.container .auth .inner-signup-cont .signup-form {
+  flex-direction: row;  
+}
+
+.container .auth .inner-cont .login-form img,
+.container .auth .inner-signup-cont .signup-form img {
+  transform: rotate(0deg) translate(0rem, 0rem);
+  width: 20%;
+  height: 100%;
+}
+
+.container .auth .inner-cont .login-form .login-section,
+.container .auth .inner-signup-cont .signup-form .signup-section {
+  padding: 2rem;
+}
+
+.container .auth .inner-cont .login-form .login-section .head,
+.container .auth .inner-signup-cont .signup-form .signup-section .head {
+  transform: translateY(0rem);
+  font-size: xx-large;
+  margin-bottom: 2rem;
+}
+
+.container .auth .inner-cont .login-form .agreement,
+.container .auth .inner-signup-cont .signup-form .agreement {
+  transform: translateY(0rem);
+  font-size: larger;
+  margin-bottom: 8rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases {
+  width: 40%;
+  height: 18rem; 
+  transform: translateY(-2rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  input,
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  input {
+  height: 3rem;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .first-phase  i {
+  font-size: xxx-large;
+  transform: translateY(1rem);
+  cursor: pointer;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons {
+  width: 80%;
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase .buttons  i {
+  font-size: xxx-large;
+  transform: translateY(1rem);
+}
+
+.container .auth .inner-signup-cont .signup-form .signup-section .signup-phases .second-phase  button {
+  width: 12rem;
+  height: 3rem;
+  transform: translateY(1rem);
+  cursor: pointer;
+}
+
+.container .auth .inner-cont .login-form .login-section form {
+  height: 8rem;
+  align-items: flex-start;
+}
+
+.container .auth .inner-cont .login-form .login-section form input {
+  width: 40%;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.container .auth .inner-cont .login-form .login-section button {
+  width: 40%;
+  height: 2.5rem;
+  font-size: large;
+  cursor: pointer;
+}
+
+
+}
+
+/* Ending the style for the desktop versions */
