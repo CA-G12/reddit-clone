@@ -1513,6 +1513,7 @@ body {
     transform: translateY(40vh);
     cursor: pointer;
     transition: display 0.3s ease-in-out;
+    display: none;
   }
 
   .container .main-content .side-content .back-to-top:hover {
