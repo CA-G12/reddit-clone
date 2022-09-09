@@ -16,6 +16,11 @@ const ownPostsButton = document.querySelector('.own');
 const upvotedPostsButton = document.querySelector('.upvoted');
 const downvotedPostsButton = document.querySelector('.downvoted');
 
+const getUsername = () => {
+  const arr = window.location.href.split('/');
+  return arr[arr.length - 1];
+};
+
 const showSection = (whichOne) => {
   const ownPostsSection = document.querySelector('.own-posts');
   const upvotedPostsSection = document.querySelector('.upvoted-posts');
@@ -80,6 +85,173 @@ const showSideMenu = (show) => {
   mobileSideMenu.style.display = show ? 'flex' : 'none';
 };
 
+// ? Create upper vote function.
+const updateVote = (id, kind, uId, pId, e) => {
+  fetch('/api/v1/posts/votes', {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      kind,
+      userId: uId,
+      postId: pId,
+    }),
+  })
+    .then((jsonData) => jsonData.json())
+    .then((data) => {
+      if (data.kind === 'upper' && e.target.classList.contains('upper-vote')) {
+        e.target.style.pointerEvents = 'none';
+      }
+      if (data.kind === 'lower' && e.target.classList.contains('lower-vote')) {
+        e.target.style.pointerEvents = 'none';
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
+// ? Creating the function which is responsible for getting the votes count.
+const getVotesCount = (id, selector) => {
+  fetch('/api/v1/posts/get-votes', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+    }),
+  }).then((jsonData) => jsonData.json())
+    .then((data) => {
+      document.querySelector(selector).textContent = data.votes || 0;
+    })
+    .catch((err) => console.log(err));
+};
+
+// ? Create the function which is responsible for generating the posts.
+const createPosts = (array, isLogged, selector) => {
+  const postsContainer = document.querySelector(selector);
+
+  if (!array[0]) {
+    const noData = document.createElement('h1');
+    noData.textContent = 'No data to show!!';
+    postsContainer.appendChild(noData);
+    return;
+  }
+
+  array.forEach((post) => {
+    const postSection = document.createElement('section');
+    postSection.classList.add('post');
+    postsContainer.appendChild(postSection);
+
+    const headSection = document.createElement('section');
+    headSection.classList.add('head');
+    postSection.appendChild(headSection);
+
+    const avatarOnlineSection = document.createElement('section');
+    avatarOnlineSection.classList.add('avatar-online');
+    headSection.appendChild(avatarOnlineSection);
+
+    const userAvatar = document.createElement('img');
+    userAvatar.src = '/assets/avatar-reddit.png';
+    userAvatar.alt = 'user avatar';
+    avatarOnlineSection.appendChild(userAvatar);
+
+    const ballDiv = document.createElement('div');
+    ballDiv.classList.add('posts-online-ball');
+    avatarOnlineSection.appendChild(ballDiv);
+
+    const usernameH3 = document.createElement('h3');
+    usernameH3.classList.add('username');
+    usernameH3.textContent = post.username;
+    headSection.appendChild(usernameH3);
+
+    const followBtn = document.createElement('button');
+    followBtn.type = 'button';
+    followBtn.classList.add('delete-btn');
+    followBtn.textContent = 'Delete';
+    headSection.appendChild(followBtn);
+
+    const title = document.createElement('p');
+    title.classList.add('title');
+    title.textContent = post.title;
+    postSection.appendChild(title);
+
+    const postText = document.createElement('p');
+    postText.classList.add('post-text');
+    postText.textContent = post.content;
+    postSection.appendChild(postText);
+
+    const votesSection = document.createElement('section');
+    votesSection.classList.add('votes');
+    postSection.appendChild(votesSection);
+
+    const upperVote = document.createElement('i');
+    upperVote.className = 'ri-arrow-up-s-line upper-vote';
+    votesSection.appendChild(upperVote);
+
+    const votesCount = document.createElement('h4');
+    votesCount.className = 'vote-number';
+    votesCount.setAttribute('data-id', post.id);
+    votesSection.appendChild(votesCount);
+
+    // ? Calling getVotesCount to get tht votes for the post from the database query.
+    getVotesCount(post.id, `[data-id="${post.id}"]`);
+
+    if (isLogged) {
+      upperVote.addEventListener('click', (e) => {
+        updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
+        // ? Updating the votes count.
+        getVotesCount(post.id, `[data-id="${post.id}"]`);
+      });
+    }
+
+    const lowerVote = document.createElement('i');
+    lowerVote.className = 'ri-arrow-down-s-line lower-vote';
+    votesSection.appendChild(lowerVote);
+
+    if (isLogged) {
+      lowerVote.addEventListener('click', (e) => {
+        updateVote(post.vote_id, 'lower', post.user_id, post.post_id, e);
+        // ? Updating the votes count.
+        getVotesCount(post.id, `[data-id="${post.id}"]`);
+      });
+    }
+
+    if (post.kind === 'upper') {
+      upperVote.style.pointerEvents = 'none';
+    }
+    if (post.kind === 'lower') {
+      lowerVote.style.pointerEvents = 'none';
+    }
+
+    const commentsSection = document.createElement('section');
+    commentsSection.classList.add('comments');
+    postSection.appendChild(commentsSection);
+
+    const commentsIcon = document.createElement('i');
+    commentsIcon.className = 'ri-question-answer-fill comments-icon';
+    commentsSection.appendChild(commentsIcon);
+
+    const commentsWord = document.createElement('p');
+    commentsWord.classList.add('comments-text');
+    commentsWord.textContent = 'Comments';
+    commentsSection.appendChild(commentsWord);
+  });
+};
+
+// ? Fetching the ownProfileData endpoint.
+fetch(`/api/v1/ownProfileData?username=${getUsername()}`)
+  .then((jsonData) => jsonData.json())
+  .then((data) => {
+    createPosts(data.posts, data.isLoggedIn, '.own-posts');
+    createPosts(data.upVoted, data.isLoggedIn, '.upvoted-posts');
+    createPosts(data.downVoted, data.isLoggedIn, '.downvoted-posts');
+  })
+  .catch((err) => console.log(err));
+
 // ? Creating the function which is responsible for creating the autocomplete options.
 const crateAutocomplete = (array) => {
   const autocompleteElements = document.querySelectorAll('.autocomplete');
@@ -127,6 +299,7 @@ searchInputs.forEach((input) => {
     fetch(`/api/v1/users/autocomplete?value=${e.target.value}`)
       .then((jsonData) => jsonData.json())
       .then((data) => {
+        console.log(data);
         e.target.nextElementSibling.style.display = 'block';
         e.target.nextElementSibling.nextElementSibling.style.display = 'block';
         crateAutocomplete(data);
@@ -217,11 +390,9 @@ let isOnline = false;
 setTimeout(() => {
   if (window.localStorage.getItem('online') === 'true') {
     const onlineBall = document.querySelector('.online-ball');
-    const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
-    const postsOnlineBall = document.querySelectorAll('.post   .posts-online-ball');
+    const postsOnlineBall = document.querySelectorAll('.post .posts-online-ball');
     onlineStatusBox.classList.add('online');
     onlineBall.classList.add('online');
-    postsGeneratorOnlineBall.classList.add('online');
     postsOnlineBall.forEach((ball) => {
       ball.classList.add('online');
     });
@@ -231,12 +402,10 @@ setTimeout(() => {
 
 onlineStatusBox.addEventListener('click', (e) => {
   const onlineBall = document.querySelector('.online-ball');
-  const postsGeneratorOnlineBall = document.querySelector('.posts-online-ball');
   const postsOnlineBall = document.querySelectorAll('.post .posts-online-ball');
   isOnline = !isOnline;
   e.target.classList.toggle('online');
   onlineBall.classList.toggle('online');
-  postsGeneratorOnlineBall.classList.toggle('online');
   postsOnlineBall.forEach((ball) => {
     ball.classList.toggle('online');
   });

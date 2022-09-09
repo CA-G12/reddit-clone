@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { getProfileInfo } = require('../../database/queries');
+const { getUserInfo } = require('../../database/queries');
 const CustomizedError = require('../../utils/customizedError');
 
 const handleProfileInfo = (req, res) => {
@@ -13,7 +13,7 @@ const handleProfileInfo = (req, res) => {
   });
 
   const { username } = req.query;
-  getProfileInfo(username)
+  getUserInfo(username)
     .then((data) => {
       const dataToSend = {
         isLoggedIn,

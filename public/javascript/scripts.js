@@ -100,7 +100,7 @@ const updateVote = (id, kind, uId, pId, e) => {
 };
 
 // ? Creating the function which is responsible for getting the votes count.
-const getVotesCount = (id, selector) => {
+const getVotesCount = (id) => {
   fetch('/api/v1/posts/get-votes', {
     method: 'POST',
     headers: {
@@ -112,7 +112,8 @@ const getVotesCount = (id, selector) => {
     }),
   }).then((jsonData) => jsonData.json())
     .then((data) => {
-      document.querySelector(selector).textContent = data.votes || 0;
+      const ele = document.querySelector(`[data-id="${id}"]`);
+      ele.textContent = data.votes || 0;
     })
     .catch((err) => console.log(err));
 };
@@ -174,17 +175,19 @@ const createPosts = (array, isLogged) => {
 
     const votesCount = document.createElement('h4');
     votesCount.className = 'vote-number';
+    votesCount.textContent = 0;
     votesCount.setAttribute('data-id', post.id);
     votesSection.appendChild(votesCount);
 
+    // console.log(document.querySelector(`[data-id="${post.id}"]`));
     // ? Calling getVotesCount to get tht votes for the post from the database query.
-    getVotesCount(post.id, `[data-id="${post.id}"]`);
+    getVotesCount(post.post_id);
 
     if (isLogged) {
       upperVote.addEventListener('click', (e) => {
         updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
         // ? Updating the votes count.
-        getVotesCount(post.id, `[data-id="${post.id}"]`);
+        getVotesCount(post.post_id);
       });
     }
 
@@ -279,7 +282,6 @@ const validateSignup = ({
 fetch('/api/v1/posts')
   .then((jsonData) => jsonData.json())
   .then((data) => {
-    console.log(data.rows);
     loggedInToggle(data.isLoggedIn);
     createPosts(data.rows, data.isLoggedIn);
   });

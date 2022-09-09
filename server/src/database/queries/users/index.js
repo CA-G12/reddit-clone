@@ -1,9 +1,9 @@
-const { getAllUsersQuery } = require('./allUsers');
+const { getUserInfo } = require('./userInfo');
 const { getPasswordForLogin } = require('./getPassword');
 const { insertUser } = require('./insertUser');
 
 module.exports = {
-  getAllUsersQuery,
+  getUserInfo,
   getPasswordForLogin,
   insertUser,
 };

@@ -12,13 +12,16 @@ beforeAll(() => {
 afterAll(() => connection.end());
 
 describe('Testing auth paths', () => {
+  it('dummy test', () => {
+    expect(1 + 1).toBe(2);
+  });
   it('Should return the username if the password is correct', (done) => {
     supertest(app)
       .post('/api/v1/auth/login')
-      .send({ username: 'hanisal', password: 'mmMM!111' })
+      .send({ username: 'mohammed', password: 'Root!123' })
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.status).toBe(401);
+        expect(res.status).toBe(200);
         return done();
       });
   });

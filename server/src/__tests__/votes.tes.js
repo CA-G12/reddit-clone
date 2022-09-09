@@ -15,7 +15,7 @@ describe('Testing votes endpoints', () => {
   it('Testing votes controller', (done) => {
     supertest(app)
       .patch('/api/v1/posts/votes')
-      .expect(400)
+      .expect(200)
       .send({
         id: 1,
       })
