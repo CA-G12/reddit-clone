@@ -1,6 +1,12 @@
-const { getAllPosts, insertNewPost } = require('./posts');
+const {
+  getAllPosts,
+  insertNewPost,
+  getPostsByUser,
+  getPostsUpVotedByUser,
+  getPostsDownVotedByUser,
+} = require('./posts');
 const { getVotesForPost, updateVoteQuery } = require('./votes');
-const { getAllUsersQuery, getPasswordForLogin, insertUser } = require('./users');
+const { getUserInfo, getPasswordForLogin, insertUser } = require('./users');
 const { getProfileInfo } = require('./general');
 
 module.exports = {
@@ -8,8 +14,11 @@ module.exports = {
   updateVoteQuery,
   insertNewPost,
   getVotesForPost,
-  getAllUsersQuery,
+  getUserInfo,
   getPasswordForLogin,
   insertUser,
   getProfileInfo,
+  getPostsByUser,
+  getPostsUpVotedByUser,
+  getPostsDownVotedByUser,
 };
