@@ -48,3 +48,983 @@ button {
 }
 
 /* Ending the styles reset. */
+
+/* Starting the general style */
+
+:root {
+  --main-color: #ffffff;
+  --secondary-color: #DAE0E6;
+  --third-color: #222222;
+  --forth-color: #1D2535;
+  --identity-color: #F14C26;
+}
+
+html {
+  line-height: 16px;
+}
+
+body {
+  width: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: var(--secondary-color);
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Ending the general style */
+
+/* Starting the style for the desktop versions */
+
+
+.header {
+  width: 100%;
+  height: 48px;
+  background-color: var(--forth-color);
+  position: fixed;
+  z-index: 100;
+  padding: 5px 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header .logo .reddit-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3rem;
+  font-size: 2.5rem;
+  color: var(--identity-color);
+  background-color: var(--main-color);
+  margin-right: 5px;
+}
+
+.header .logo .reddit-text {
+  color: var(--main-color);
+  position: relative;
+}
+
+.header .logo .reddit-text .reddit-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--identity-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 3.3rem;
+  top: 1px;
+  z-index: 3;
+}
+
+.header .header-mobile {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .header-mobile .edit-icon,
+.header .header-mobile .close-icon ,
+.header .header-mobile .burger-menu-icon {
+  color: var(--main-color);
+  font-size: x-large;
+}
+
+.header .header-mobile .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+  display: none;
+}
+
+.header .post-options {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--main-color);
+  border-top: 1px solid #efefed;
+  position: absolute;
+  left: 0;
+  top: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  box-shadow: 0px 12px 7px 0px rgba(246,247,248,.7);
+  display: none;
+}
+
+.header .post-options .text,
+.header .post-options .link {
+  width: 30%;
+  height: 58%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .post-options .text .text-icon,
+.header .post-options .link .link-icon {
+  width: 60px;
+  font-size: 60px;
+  color: #24a0ed;
+}
+
+.header .post-options .text .inner-text,
+.header .post-options .link .inner-text {
+  color: #a5a4a4;
+  font-size: small;
+  font-weight: 300;
+}
+
+.header .mobile-side-menu {
+  width: 100%;
+  height: 40vh;
+  background-color: var(--forth-color);
+  color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  display: none;
+}
+
+.header .mobile-side-menu .head {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.header .mobile-side-menu .head .logo .reddit-text .reddit-dot {
+  width: 4px;
+  height: 4px;
+  left: 2.2rem;
+}
+
+.header .mobile-side-menu .head .close-icon {
+  color: #a5a4a4;
+  font-size: xx-large;
+}
+
+.header .mobile-side-menu .search-box {
+  display: block;
+  width: 100%;
+  height: 3vh;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+
+.header .mobile-side-menu .search-box .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 0.9vh;
+  z-index: 5;
+}
+
+.header .mobile-side-menu .search-box .search {
+  width: 100%;
+  height: 4vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  padding-left: 2rem;
+  background-color: rgba(246,247,248,.1);
+  border: none;
+  border-radius: 1rem;
+}
+
+.header .autocomplete {
+  width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: var(--main-color);
+  position: absolute;
+  left: 0;
+  top: 30px;
+  z-index: 20;
+  color: var(--third-color);
+  display: none;
+}
+
+.header .autocomplete .option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #7C8082;
+  margin-bottom: 01rem;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.header .autocomplete .option .full-name {
+  font-weight: 600;
+}
+
+.header .autocomplete .option .inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 2rem;
+  font-size: small;
+  font-weight: 600;
+}
+
+.header .mobile-side-menu .search-box .search:focus {
+  outline: none;
+  border: none;
+}
+
+.header .mobile-side-menu .search-box .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 0.5vh;
+  z-index: 5;
+  background-color: #a5a4a4;
+  border-radius: 50%;
+  display: none;
+}
+
+.header .mobile-side-menu .user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.header .mobile-side-menu .user img {
+  width: 32px;
+  height: 32px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.header .mobile-side-menu .user .username {
+  font-weight: 700;
+  font-size: large;
+}
+
+.header .mobile-side-menu .logout {
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #24a0ed;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 1rem;
+}
+
+.header .header-navigator {
+  display: none;
+}
+
+.header .search-box {
+  display: none;
+}
+
+.header .icons {
+  display: none;
+}
+
+.header .shop-avatars {
+  display: none;
+}
+
+.header .account-nav {
+  display: none;
+}
+
+.container .sections {
+  transform: translateY(5.8vh);
+  width: 100%;
+  height: 3rem;
+  background: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container .sections button {
+  width: 25%;
+  height: 90%;
+  background-color: transparent;
+  border: none;
+  color: #6A6D6F;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.container .own-posts,
+.container .upvoted-posts, 
+.container .downvoted-posts  {
+  transform: translateY(8vh);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  background-color: transparent;
+  padding-bottom: 1rem;
+}
+
+.container .upvoted-posts {
+  display: none;
+}
+
+.container .downvoted-posts {
+  display: none;
+}
+
+.container .own-posts .post,
+.container .upvoted-posts .post,
+.container .downvoted-posts .post {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--main-color);
+}
+
+.container .own-posts .post .head,
+.container .upvoted-posts .post .head,
+.container .downvoted-posts .post .head {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.container .own-posts .post .head .avatar-online,
+.container .upvoted-posts .post .head .avatar-online,
+.container .downvoted-posts .post .head .avatar-online {
+  width: 2.5rem;
+  position: relative;
+}
+
+
+.container .own-posts .post .head .avatar-online .posts-online-ball ,
+.container .upvoted-posts .post .head .avatar-online .posts-online-ball ,
+.container .downvoted-posts .post .head .avatar-online .posts-online-ball {
+  width: 8px;
+  height: 8px;
+  background-color: rgb(0, 177, 0);
+  border-radius: 50%;
+  position: absolute;
+  left: 1.2rem;
+  bottom: 0.2rem;
+  display: none;
+}
+
+.container .own-posts .post .head .avatar-online .posts-online-ball.online,
+.container .upvoted-posts .post .head .avatar-online .posts-online-ball.online,
+.container .downvoted-posts .post .head .avatar-online .posts-online-ball.online {
+  display: block;
+}
+
+.container .own-posts .post .head .username,
+.container .upvoted-posts .post .head .username,
+.container .downvoted-posts .post .head .username {
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.container .own-posts .post .head .delete-btn,
+.container .upvoted-posts .post .head .delete-btn,
+.container .downvoted-posts .post .head .delete-btn {
+  width: 5rem;
+  height: 1.5rem;
+  font-size: small;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #24a0ed;
+  color: var(--main-color);
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.container .own-posts .post .head .delete-btn:hover,
+.container .upvoted-posts .post .head .delete-btn:hover,
+.container .downvoted-posts .post .head .delete-btn:hover {
+  opacity: 1;
+}
+
+.container .own-posts  .post .title,
+.container .upvoted-posts  .post .title,
+.container .downvoted-posts  .post .title {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-size: 1.3rem;
+  color: #494949;
+  font-weight: 600;
+}
+
+.container .own-posts .post .post-text,
+.container .upvoted-posts .post .post-text,
+.container .downvoted-posts .post .post-text {
+  font-size: 0.9rem;
+  line-height: 20px;
+  line-break: loose;
+  color: #494949;
+  opacity: 0.6;
+}
+
+.container .own-posts .post .votes,
+.container .upvoted-posts .post .votes,
+.container .downvoted-posts .post .votes {
+  width: 8rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container .own-posts .post .votes i,
+.container .upvoted-posts .post .votes i,
+.container .downvoted-posts .post .votes i {
+  width: 1.3rem;
+  height: 2rem;
+  color: #585858;
+  border: 1px solid #585858;
+  font-weight: 700;
+  font-size: large;
+  border-radius: 0.2rem;
+  padding-top: 0.2rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.container .own-posts .votes .vote-number,
+.container .upvoted-posts .votes .vote-number,
+.container .downvoted-posts .votes .vote-number {
+  font-size: 0.9rem;
+}
+
+.container .own-posts .post .comments,
+.container .upvoted-posts .post .comments,
+.container .downvoted-posts .post .comments {
+  display: inline-flex;
+  width: 8rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: #585858;
+  opacity: 0.8;
+  transform: translateY(0.7rem);
+  cursor: pointer;
+}
+
+.mobile-post-container {
+  width: 100%;
+  height: 100vh;
+  padding: 1rem 0.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 120;
+  background-color: #FCFCFB;
+  display: none;
+}
+
+.mobile-post-container .post-header {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-post-container .post-header .inner {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-post-container .post-header .inner .close-icon {
+  font-size: xx-large;
+  color: #CCCCCA;
+}
+
+.mobile-post-container .post-header .inner .text-word {
+  font-size: large;
+  color: #727272;
+}
+
+.mobile-post-container .post-header .post-button {
+  width: 4rem;
+  height: 2rem;
+  background-color: #dcdcdc;
+  color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.mobile-post-container .inputs {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mobile-post-container .inputs input {
+  width: 100%;
+  height: 2.5rem;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1F1F20;
+  outline: none;
+}
+
+.mobile-post-container .inputs textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1F1F20;
+  outline: none;
+}
+
+/* Ending the style for the desktop versions */
+
+/* Starting the style for the desktop versions */
+
+@media only screen and (min-width: 569px) {
+
+  .header {
+    padding: 5px 1rem;
+    background-color: var(--main-color);
+    justify-content: flex-start;
+  }
+
+  .header .header-mobile {
+    display: none;
+  }
+
+  .header .logo {
+    width: 10%;
+  }
+
+  .header .logo .reddit-text {
+    color: var(--third-color);
+  }
+
+  .header .header-navigator {
+    width: 15%;
+    height: 100%;
+    padding: 0.2rem 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header .header-navigator:hover {
+    cursor: pointer;
+    border: 0.2px solid #a5a4a4;
+  }
+
+  .header .header-navigator .first-part {
+    width: 28%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header .search-box {
+    display: block;
+    width: 40%;
+    height: 90%;
+    position: relative;
+    background-color: var(--third-color);
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 3px 5px solid #DAE0E6;
+  }
+
+  .header .search-box .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 0.7vh;
+    z-index: 5;
+    padding-right: 1rem;
+    cursor: pointer;
+  }
+
+  .header .search-box .search {
+    width: 100%;
+    height: 100%;
+    padding-left: 3rem;
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background-color: #e7e9ec;
+  }
+
+  ::placeholder {
+    color: #585858;
+  }
+
+  .header .autocomplete {
+    height: 20rem;
+  }
+
+  .header .search-box .close-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 10px;
+    color: #136394;
+    font-size: x-large;
+    cursor: pointer;
+    display: none;
+  }
+
+  .header .icons {
+    width: 15%;
+    height: 100%;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header .icons i {
+    width: 32px;
+    height: 32px;
+    font-size: x-large;
+    color: #404041;
+    border: 1px solid #404041;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .header .shop-avatars {
+    width: 7rem;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    background-image: linear-gradient(to right, #5450DA , #B556C0);
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: small;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .header .account-nav {
+    width: 12rem;
+    margin-left: 1rem;
+    display: block;
+    align-self: flex-start;
+    position: relative;
+  }
+
+  .header .account-nav:hover {
+    cursor: pointer;
+    border: 0.2px solid #a5a4a4;
+  }
+
+  .header .account-nav .interface {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .header .account-nav .interface img {
+    width: 32px;
+    margin-right: 1rem;
+  }
+
+  .header .account-nav .interface .username {
+    margin-right: 3rem;
+  }
+
+  .header .account-nav .interface .online-ball {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.8rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(0, 177, 0);
+    display: none;
+  }
+
+  .header .account-nav .interface .online-ball.online {
+    display: block;
+  }
+
+  .header .account-nav .menu {
+    width: 15rem;
+    height: 18rem;
+    position: absolute;
+    right: -38px;
+    top: 45px;
+    background-color: var(--main-color);
+    padding: 1rem;
+    font-size: medium;
+    font-weight: 600;
+  }
+
+  .header .account-nav .menu.hidden {
+    display: none;
+  }
+
+  .header .account-nav .menu .my-stuff {
+    width: 100%;
+    height: 6.5rem;
+    border-bottom: 1px solid #adadad;
+    margin-bottom: 1rem;
+  }
+
+  .header .account-nav .menu .my-stuff .head {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #7C8082;
+  }
+
+  .header .account-nav .menu .my-stuff .head i {
+    font-size: larger;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status .bar {
+    width: 2.5rem;
+    height: 1.5rem;
+    background-color: #ddd;
+    padding: 0 0.1rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status.online .bar {
+    background-color: #24a0ed;
+    justify-content: flex-end;
+  }
+
+  .header .account-nav .menu .my-stuff .online-status .bar .ball {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  .header .account-nav .menu .my-stuff .profile {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .view-options {
+    width: 100%;
+    height: 5rem;
+    border-bottom: 1px solid #adadad;
+  }
+
+  .header .account-nav .menu .view-options .head {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #7C8082;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .account-nav .menu .view-options .theme {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .account-nav .menu .view-options .theme .bar {
+    width: 2.5rem;
+    height: 1.5rem;
+    background-color: #ddd;
+    padding: 0 0.1rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .header .account-nav .menu .view-options .theme .bar .ball {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  .header .account-nav .menu .logout {
+    width: 70%;
+    height: 2rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #24a0ed;
+    color: var(--main-color);
+    font-size: large;
+    margin-top: 1.2rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+  }
+
+  .header .auth {
+    width: 40%;
+    height: 100%;
+    margin-left: 10rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .header .auth .login,
+  .header .auth .signup {
+    display: block;
+    width: 15rem;
+    height: 2.2rem;
+    font-weight: 700;
+    background-color: #24a0ed;
+    color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    margin-left: 3rem;
+    border-radius: 1rem;
+    opacity: 0.9;
+}
+
+  .logged-in .auth {
+    display: none;
+  }
+
+  .header .auth .login:hover,
+  .header .auth .signup:hover {
+    opacity: 1;
+}
+
+  .header .auth .login {
+    background-color: var(--main-color);
+    border: 1px solid #24a0ed;
+    color: #24a0ed;
+  }
+
+  .mobile-post-container {
+    display: none;
+  }
+
+  .container .sections {
+    transform: translateY(4.8vh);
+    height: 4rem;
+  }
+
+  .container .sections button {
+    font-size: large;
+  }
+
+  .container .own-posts,
+  .container .upvoted-posts, 
+  .container .downvoted-posts  {
+    width: 68%;
+  }
+
+  .container .post .head {
+    gap: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .container .post .head .username {
+    font-size: 1.2rem !important;
+  }
+
+  .container .post .head .delete-btn {
+    width: 7rem !important;
+    height: 2rem !important;
+  }
+
+  .container .post .title {
+    font-size: 1.5rem;
+  }
+
+  .container .post .post-text {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .container .post .votes {
+    margin-bottom: 1rem !important;
+  }
+
+  .container .post .votes i {
+    width: 1.7rem !important;
+    font-size: x-large !important;
+  }
+
+  .container .post .vote-number {
+    font-size: 1.13rem !important;
+  }
+
+  .container .post .comments {
+    font-size: 1.2rem;
+    margin-bottom: 1rem !important;
+  }
+
+}
+
+/* Ending the style for the desktop versions */
