@@ -71,4 +71,17 @@ describe('Testing posts queries and routes.', () => {
         return done(err);
       });
   });
+
+  it('Testing delete route', (done) => {
+    supertest(app)
+      .delete('/api/v1/posts/delete')
+      .send({
+        id: 2,
+      })
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.status).toBe(200);
+        return done();
+      });
+  });
 });

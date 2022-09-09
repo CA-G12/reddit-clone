@@ -6,6 +6,19 @@ const addNewIcon = document.querySelector('.add-icon');
 const logout = document.querySelector('.logout');
 const postButton = document.querySelector('.post');
 const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
+const redditLogos = document.querySelectorAll('.header .logo');
+const profileButton = document.querySelector('.profile');
+
+profileButton.addEventListener('click', () => {
+  const username = localStorage.getItem('username');
+  window.location.href = `/api/v1/users/${username}`;
+});
+
+redditLogos.forEach((logo) => {
+  logo.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+});
 
 // ? Creating post validation function.
 const validatePostInputs = (title, content) => {

@@ -15,6 +15,19 @@ const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
 const ownPostsButton = document.querySelector('.own');
 const upvotedPostsButton = document.querySelector('.upvoted');
 const downvotedPostsButton = document.querySelector('.downvoted');
+const redditLogos = document.querySelectorAll('.header .logo');
+const profileButton = document.querySelector('.profile');
+
+profileButton.addEventListener('click', () => {
+  const username = localStorage.getItem('username');
+  window.location.href = `/api/v1/users/${username}`;
+});
+
+redditLogos.forEach((logo) => {
+  logo.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+});
 
 const getUsername = () => {
   const arr = window.location.href.split('/');
@@ -168,11 +181,28 @@ const createPosts = (array, isLogged, selector) => {
     usernameH3.textContent = post.username;
     headSection.appendChild(usernameH3);
 
-    const followBtn = document.createElement('button');
-    followBtn.type = 'button';
-    followBtn.classList.add('delete-btn');
-    followBtn.textContent = 'Delete';
-    headSection.appendChild(followBtn);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.textContent = 'Delete';
+    headSection.appendChild(deleteBtn);
+    deleteBtn.addEventListener('click', () => {
+      fetch('/api/v1/posts/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({
+          id: post.id,
+        }),
+        headers: {
+          Accept: 'application/json',
+          'content-type': 'application/json',
+        },
+      }).then((jsonData) => jsonData.json())
+        .then((data) => {
+          window.alert(`Row num: ${data.data.id} is deleted sucessfully!!!`);
+          window.location.href = `/api/v1/users/${getUsername()}`;
+        })
+        .catch((err) => console.log(err));
+    });
 
     const title = document.createElement('p');
     title.classList.add('title');

@@ -1,6 +1,6 @@
 const { updateVotes, getVotesByPost } = require('./votes');
 const { getPostGeneratorPage, getUsersProfile, getOwnProfile } = require('./pages');
-const { getAllPostsController, addNewPost } = require('./posts');
+const { getAllPostsController, addNewPost, deletePost } = require('./posts');
 const { getAutoCompleteData } = require('./users');
 const { handleProfileInfo, ownProfileData } = require('./general');
 const { loginController, signupController, logoutController } = require('./auth');
@@ -19,4 +19,5 @@ module.exports = {
   handleProfileInfo,
   getOwnProfile,
   ownProfileData,
+  deletePost,
 };

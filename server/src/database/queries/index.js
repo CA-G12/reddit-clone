@@ -4,6 +4,7 @@ const {
   getPostsByUser,
   getPostsUpVotedByUser,
   getPostsDownVotedByUser,
+  deletePostQuery,
 } = require('./posts');
 const { getVotesForPost, updateVoteQuery } = require('./votes');
 const { getUserInfo, getPasswordForLogin, insertUser } = require('./users');
@@ -21,4 +22,5 @@ module.exports = {
   getPostsByUser,
   getPostsUpVotedByUser,
   getPostsDownVotedByUser,
+  deletePostQuery,
 };
