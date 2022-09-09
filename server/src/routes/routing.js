@@ -8,7 +8,7 @@ const {
 const { verifyAccessToken } = require('../utils/jwt');
 
 router.get('/posts/generator', verifyAccessToken, getPostGeneratorPage);
-router.get('/users/:username', verifyAccessToken, getOwnProfile);
 router.get('/users/profile', getUsersProfile);
+router.get('/users/:username', verifyAccessToken, getOwnProfile);
 
 module.exports = router;
