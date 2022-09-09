@@ -13,7 +13,7 @@ const getPostsByUser = (id) => {
         post_id
       FROM
         posts
-      INNER JOIN
+      LEFT JOIN
         votes
       ON
         posts.id = votes.post_id

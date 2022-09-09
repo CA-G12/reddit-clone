@@ -126,7 +126,7 @@ postButton.addEventListener('click', () => {
     })
       .then((jsonData) => jsonData.json())
       .then((data) => {
-        if (data.msg) {
+        if (data.id) {
           window.location.href = '/api/v1/posts/generator';
           window.alert('New post was added!');
         }

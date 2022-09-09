@@ -299,6 +299,7 @@ searchInputs.forEach((input) => {
     fetch(`/api/v1/users/autocomplete?value=${e.target.value}`)
       .then((jsonData) => jsonData.json())
       .then((data) => {
+        console.log(data);
         e.target.nextElementSibling.style.display = 'block';
         e.target.nextElementSibling.nextElementSibling.style.display = 'block';
         crateAutocomplete(data);

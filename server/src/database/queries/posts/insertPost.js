@@ -1,9 +1,9 @@
 const connection = require('../../config/connection');
 
-const insertNewPost = (content, id) => {
+const insertNewPost = (title, content, id) => {
   const sql = {
-    text: 'INSERT INTO posts(title, content, user_id) VALUES($1, 0, $2)',
-    values: [content, id],
+    text: 'INSERT INTO posts(title, content, user_id) VALUES($1, $2, $3) RETURNING *',
+    values: [title, content, id],
   };
   return connection.query(sql);
 };

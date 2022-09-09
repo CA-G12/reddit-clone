@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
 const router = require('./routes');
+const { serverError } = require('./controllers/errors');
 
 const app = express();
 
@@ -21,5 +22,7 @@ app.use(helmet.contentSecurityPolicy({ useDefaults: true, directives: { 'img-src
 app.use(express.static(join(__dirname, '..', '..', 'private')));
 app.use(express.static(join(__dirname, '..', '..', 'public')));
 app.use('/api/v1/', router);
+
+app.use(serverError);
 
 module.exports = app;

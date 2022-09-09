@@ -9,8 +9,8 @@ const general = require('./general');
 
 router.use('/posts', posts);
 router.use('/posts', votes);
-router.use('/', routing);
 router.use('/', users);
+router.use('/', routing);
 router.use('/', general);
 router.use('/auth', auth);
 
