@@ -16,6 +16,19 @@ const onlineBall = document.querySelector('.online-ball');
 const mobileLogout = document.querySelector('.mobile-side-menu .logout');
 const logoutBtn = document.querySelector('.account-nav .logout');
 const addNewIcon = document.querySelector('.add-icon');
+const redditLogos = document.querySelectorAll('.header .logo');
+const profileButton = document.querySelector('.profile');
+
+profileButton.addEventListener('click', () => {
+  const username = localStorage.getItem('username');
+  window.location.href = `/api/v1/users/${username}`;
+});
+
+redditLogos.forEach((logo) => {
+  logo.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+});
 
 const getUsername = () => window.location.href.split('=')[1];
 

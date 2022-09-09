@@ -21,6 +21,19 @@ const postGeneratorCloseIcon = document.querySelector('.mobile-post-container .c
 const postGeneratorSection = document.querySelector('.generate-post');
 const addNewIcon = document.querySelector('.add-icon');
 const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
+const redditLogos = document.querySelectorAll('.header .logo');
+const profileButton = document.querySelector('.profile');
+
+redditLogos.forEach((logo) => {
+  logo.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+});
+
+profileButton.addEventListener('click', () => {
+  const username = localStorage.getItem('username');
+  window.location.href = `/api/v1/users/${username}`;
+});
 
 // ? Creating loggedInToggle function.
 const loggedInToggle = (isLogged) => {
