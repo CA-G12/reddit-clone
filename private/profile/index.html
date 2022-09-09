@@ -13,11 +13,590 @@
   href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=Open+Sans:wght@400;700&display=swap" 
   rel="stylesheet"
 >
+<!-- Remix icons library. -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <!-- Main stylesheet. -->
-<link rel="stylesheet" href="/profile/styles.css">
+<link rel="stylesheet" href="/private/profile/styles.css">
   <title>Reddit</title>
 </head>
 <body>
-  <script src="/profile/scripts.js"></script>
+  <div class="container">
+    <header class="header">
+      <section class="logo">
+        <i class="ri-reddit-fill reddit-icon"></i>
+        <h1 class="reddit-text">
+          reddit
+          <span class="reddit-dot"></span>
+        </h1>
+      </section>
+      <section class="header-mobile">
+        <i class="ri-pencil-fill edit-icon"></i>
+        <i class="ri-close-line close-icon"></i>
+        <i class="ri-menu-5-fill burger-menu-icon"></i>
+      </section>
+      <section class="post-options">
+        <section class="text">
+          <i class="ri-file-text-fill text-icon"></i>
+          <p class="inner-text">Text</p>
+        </section>
+        <section class="link">
+          <i class="ri-link-m link-icon"></i>
+          <p class="inner-text">Link</p>
+        </section>
+      </section>
+      <section class="mobile-side-menu">
+        <section class="head">
+          <section class="logo">
+            <i class="ri-reddit-fill reddit-icon"></i>
+            <h1 class="reddit-text">
+              reddit
+              <span class="reddit-dot"></span>
+            </h1>
+          </section>
+          <i class="ri-close-line close-icon"></i>
+        </section>
+        <section class="search-box">
+          <i class="ri-search-line search-icon"></i>
+          <input 
+            type="text" 
+            name="search"
+            autocomplete="off"
+            id="search" 
+            class="search" 
+            placeholder="Search Reddit" 
+            aria-label="search bar" 
+          />
+          <section class="autocomplete" 
+          id="autocomplete-mobile"></section>
+          <i class="ri-close-line close-icon"></i>
+        </section>
+        <section class="user">
+          <img src="/public/assets/avatar-reddit.png" alt="avatar">
+          <p class="username"></p>
+        </section>
+        <button type="button" class="logout">Log out</button>
+      </section>
+      <section class="header-navigator">
+        <section class="first-part">
+          <i class="ri-home-4-fill home"></i>
+          <h3 class="home">Home</h3>
+        </section>
+        <i class="ri-arrow-down-s-line down-arrow"></i>
+      </section>
+      <section class="search-box">
+        <i class="ri-search-line search-icon"></i>
+        <input 
+          type="text" 
+          name="search"
+          autocomplete="off"
+          id="search" 
+          class="search" 
+          placeholder="Search Reddit" 
+          aria-label="search bar" 
+        />
+        <section class="autocomplete" id="autocomplete-desktop"></section>
+        <i class="ri-close-line close-icon"></i>
+      </section>
+      <section class="icons">
+        <i class="ri-arrow-right-up-line arrow-right-up-icon"></i>
+        <i class="ri-bar-chart-line all-icon"></i>
+        <i class="ri-live-line live-icon"></i>
+        <i class="ri-wechat-2-line chat-icon"></i>
+        <i class="ri-notification-2-line notification-icon"></i>
+        <i class="ri-add-line add-icon"></i>
+        <i class="ri-advertisement-fill ad-icon"></i>
+      </section>
+      <section class="shop-avatars">
+        <p class="text">Shop Avatars</p>
+        <div class="star start1"></div>
+        <div class="star start2"></div>
+        <div class="star start3"></div>
+      </section>
+      <section class="account-nav">
+        <section class="interface">
+          <img src="/public/assets/avatar-reddit.png" alt="user avatar">
+          <p class="username"></p>
+          <i class="ri-arrow-down-s-line down-arrow"></i>
+          <div class="online-ball"></div>
+        </section>
+        <section class="menu hidden">
+          <section class="my-stuff">
+            <section class="head">
+              <i class="ri-account-circle-line account-icon"></i>
+              <p class="text">My Stuff</p>
+            </section>
+            <section class="online-status">
+              <p class="text">Online Status</p>
+              <div class="bar">
+                <div class="ball"></div>
+              </div>
+            </section>
+            <p class="profile">Profile</p>
+          </section>
+          <section class="view-options">
+            <section class="head">
+              <i class="ri-eye-line view-icon"></i>
+              <p class="text">View Options</p>
+            </section>
+            <section class="theme">
+              <p class="text">Dark Mode</p>
+              <div class="bar">
+                <div class="ball"></div>
+              </div>
+            </section>
+            <button type="button" class="logout">Logout</button>
+          </section>
+        </section>
+      </section>
+    </header>
+    <nav class="sections">
+      <button type="button" class="own">Own Posts</button>
+      <button type="button" class="upvoted">Up Voted</button>
+      <button type="button" class="downvoted">Down Voted</button>
+    </nav>
+    <section class="own-posts">
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+    </section>
+    <section class="upvoted-posts">
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+    </section>
+    <section class="downvoted-posts">
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+      <section class="post">
+        <section class="head">
+          <section class="avatar-online">
+            <img src="/public/assets/avatar-reddit.png" alt="user avatar" />
+            <div class="posts-online-ball"></div>
+          </section>
+          <h2 class="username">Mosstaf</h2>
+          <button type="button" class="delete-btn">delete</button>
+        </section>
+        <p class="post-text">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique veniam expedita 
+          accusantium dolorem quasi, sint perspiciatis. Numquam quos eum optio, sint consectetur ea pariatur 
+          laborum ullam. Nihil explicabo id natus.
+        </p>
+        <section class="votes">
+          <i class="ri-arrow-up-s-line upper-vote"></i>
+          <h4 class="vote-number">50</h4>
+          <i class="ri-arrow-down-s-line lower-vote"></i>
+        </section>
+        <section class="comments">
+          <i class="ri-question-answer-fill comments-icon"></i>
+          <p class="comments-text">Comments</p>
+        </section>
+      </section>
+    </section>
+    <section class="mobile-post-container">
+      <header class="post-header">
+        <section class="inner">
+          <i class="ri-close-line close-icon"></i>
+          <p class="text-word">Text</p>
+        </section>
+        <button type="button" class="post-button">Post</button>
+      </header>
+      <section class="inputs">
+        <input 
+          type="text" 
+          name="title" 
+          id="title"
+          placeholder="Add an interesting title"
+          aria-label="title"
+          required
+        />
+        <textarea 
+            name="content" 
+            id="content" 
+            cols="30" 
+            rows="5" 
+            aria-label="post content"
+            placeholder="Text"
+            required
+          ></textarea>
+      </section>
+    </section>
+  </div>
+  <script src="/private/profile/scripts.js"></script>
 </body>
 </html>
