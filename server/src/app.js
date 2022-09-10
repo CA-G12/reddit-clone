@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
 const router = require('./routes');
-const { serverError } = require('./controllers/errors');
+const { serverError, notFoundPage } = require('./controllers');
 
 const app = express();
 
@@ -23,6 +23,7 @@ app.use(express.static(join(__dirname, '..', '..', 'private')));
 app.use(express.static(join(__dirname, '..', '..', 'public')));
 app.use('/api/v1/', router);
 
+app.use('*', notFoundPage);
 app.use(serverError);
 
 module.exports = app;
