@@ -229,10 +229,9 @@ const createPosts = (array, isLogged, selector) => {
 
     // ? Calling getVotesCount to get tht votes for the post from the database query.
     getVotesCount(post.id, `[data-id="${post.id}"]`);
-
     if (isLogged) {
       upperVote.addEventListener('click', (e) => {
-        updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
+        updateVote(post.vote_id, 'upper', post.user_id, post.id, e);
         // ? Updating the votes count.
         getVotesCount(post.id, `[data-id="${post.id}"]`);
       });
@@ -244,7 +243,7 @@ const createPosts = (array, isLogged, selector) => {
 
     if (isLogged) {
       lowerVote.addEventListener('click', (e) => {
-        updateVote(post.vote_id, 'lower', post.user_id, post.post_id, e);
+        updateVote(post.vote_id, 'lower', post.user_id, post.id, e);
         // ? Updating the votes count.
         getVotesCount(post.id, `[data-id="${post.id}"]`);
       });
@@ -410,6 +409,8 @@ sideMenuCloseIcon.addEventListener('click', () => {
 window.addEventListener('load', () => {
   const usernameP = document.querySelector('.account-nav .username');
   const username = window.localStorage.getItem('username');
+  const usernameMob = document.querySelector('.user .username');
+  usernameMob.textContent = username;
   usernameP.textContent = username;
 });
 

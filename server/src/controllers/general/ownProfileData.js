@@ -42,9 +42,9 @@ const ownProfileData = (req, res, next) => {
                   downVoted: downVoted.rows,
                 })).then((obj) => {
                   res.json(obj);
-                });
-            });
-        });
+                }).catch((err) => next(err));
+            }).catch((err) => next(err));
+        }).catch((err) => next(err));
     }).catch((err) => next(err));
 };
 

@@ -23,6 +23,7 @@ const addNewIcon = document.querySelector('.add-icon');
 const emptySearchIcons = document.querySelectorAll('.search-box .close-icon');
 const redditLogos = document.querySelectorAll('.header .logo');
 const profileButton = document.querySelector('.profile');
+const createPostButton = document.querySelector('.create-post-button');
 
 redditLogos.forEach((logo) => {
   logo.addEventListener('click', () => {
@@ -196,25 +197,31 @@ const createPosts = (array, isLogged) => {
     // ? Calling getVotesCount to get tht votes for the post from the database query.
     getVotesCount(post.post_id);
 
-    if (isLogged) {
-      upperVote.addEventListener('click', (e) => {
+    upperVote.addEventListener('click', (e) => {
+      if (isLogged) {
         updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
         // ? Updating the votes count.
         getVotesCount(post.post_id);
-      });
-    }
+      } else {
+        const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+        LoginFormElement.style.display = 'flex';
+      }
+    });
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
 
-    if (isLogged) {
-      lowerVote.addEventListener('click', (e) => {
+    lowerVote.addEventListener('click', (e) => {
+      if (isLogged) {
         updateVote(post.vote_id, 'lower', post.user_id, post.post_id, e);
         // ? Updating the votes count.
         getVotesCount(post.id, `[data-id="${post.id}"]`);
-      });
-    }
+      } else {
+        const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+        LoginFormElement.style.display = 'flex';
+      }
+    });
 
     if (post.kind === 'upper') {
       upperVote.style.pointerEvents = 'none';
@@ -291,10 +298,13 @@ const validateSignup = ({
   && (isPhoneValid && isFnameValid && isLnameValid);
 };
 
+let isLoggedIn = false;
+
 // ? Create the fetch function to get the posts data.
 fetch('/api/v1/posts')
   .then((jsonData) => jsonData.json())
   .then((data) => {
+    isLoggedIn = data.isLoggedIn;
     loggedInToggle(data.isLoggedIn);
     createPosts(data.rows, data.isLoggedIn);
   });
@@ -316,9 +326,12 @@ loginSubmit.addEventListener('click', () => {
     })
       .then((jsonData) => jsonData.json())
       .then((data) => {
-        window.localStorage.setItem('username', data.username);
-        window.localStorage.setItem('id', data.id);
-        return data;
+        if (data.username) {
+          window.localStorage.setItem('username', data.username);
+          window.localStorage.setItem('id', data.id);
+        } else {
+          window.alert('Make sure you entered the username and password correctly.');
+        }
       })
       .then(() => {
         window.location.href = '/';
@@ -387,12 +400,17 @@ searchInputs.forEach((input) => {
 });
 
 // ? Fetch request for post creator page.
-[postGeneratorSection, addNewIcon].forEach((icon) => {
+[postGeneratorSection, addNewIcon, createPostButton].forEach((icon) => {
   icon.addEventListener('click', () => {
-    fetch('/api/v1/posts/generator')
-      .then(() => {
-        window.location.href = '/api/v1/posts/generator';
-      });
+    if (isLoggedIn) {
+      fetch('/api/v1/posts/generator')
+        .then(() => {
+          window.location.href = '/api/v1/posts/generator';
+        });
+    } else {
+      const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+      LoginFormElement.style.display = 'flex';
+    }
   });
 });
 
@@ -481,7 +499,7 @@ setTimeout(() => {
     });
     isOnline = true;
   }
-}, 200);
+}, 100);
 
 onlineStatusBox.addEventListener('click', (e) => {
   const onlineBall = document.querySelector('.online-ball');
@@ -509,6 +527,8 @@ document.querySelector('.signup-section .close-icon').addEventListener('click', 
 window.addEventListener('load', () => {
   const usernameP = document.querySelector('.account-nav .username');
   const username = window.localStorage.getItem('username');
+  const usernameMob = document.querySelector('.user .username');
+  usernameMob.textContent = username;
   usernameP.textContent = username;
 });
 
