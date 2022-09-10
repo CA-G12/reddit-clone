@@ -149,25 +149,35 @@ const createPosts = (array, isLogged) => {
     // ? Calling getVotesCount to get tht votes for the post from the database query.
     getVotesCount(post.id, `[data-id="${post.id}"]`);
 
-    if (isLogged) {
-      upperVote.addEventListener('click', (e) => {
+    upperVote.addEventListener('click', (e) => {
+      if (isLogged) {
         updateVote(post.vote_id, 'upper', post.user_id, post.post_id, e);
         // ? Updating the votes count.
         getVotesCount(post.id, `[data-id="${post.id}"]`);
-      });
-    }
+      } else {
+        const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+        const authContainer = document.querySelector('.container .outer-auth');
+        authContainer.style.display = 'block';
+        LoginFormElement.style.display = 'flex';
+      }
+    });
 
     const lowerVote = document.createElement('i');
     lowerVote.className = 'ri-arrow-down-s-line lower-vote';
     votesSection.appendChild(lowerVote);
 
-    if (isLogged) {
-      lowerVote.addEventListener('click', (e) => {
+    lowerVote.addEventListener('click', (e) => {
+      if (isLogged) {
         updateVote(post.vote_id, 'lower', post.user_id, post.post_id, e);
         // ? Updating the votes count.
         getVotesCount(post.id, `[data-id="${post.id}"]`);
-      });
-    }
+      } else {
+        const LoginFormElement = document.querySelector('.container .auth .inner-cont');
+        const authContainer = document.querySelector('.container .outer-auth');
+        authContainer.style.display = 'block';
+        LoginFormElement.style.display = 'flex';
+      }
+    });
 
     if (post.kind === 'upper') {
       upperVote.style.pointerEvents = 'none';
@@ -473,6 +483,8 @@ addNewIcon.addEventListener('click', () => {
 window.addEventListener('load', () => {
   const usernameP = document.querySelector('.account-nav .username');
   const username = window.localStorage.getItem('username');
+  const usernameMob = document.querySelector('.user .username');
+  usernameMob.textContent = username;
   usernameP.textContent = username;
 });
 
