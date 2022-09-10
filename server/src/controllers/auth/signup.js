@@ -3,7 +3,7 @@ const { signupValidation } = require('../../utils/joiValidation');
 const { hashPassword } = require('../../utils/bcrypt');
 const CustomizedError = require('../../utils/customizedError');
 
-const signupController = (req, res, next) => {
+const signupController = (req, res) => {
   signupValidation.validateAsync(req.body)
     .then((validatedObj) => {
       const {
@@ -15,17 +15,17 @@ const signupController = (req, res, next) => {
             .then((data) => res.status(201).json(data.rows[0]))
             .catch((err) => {
               console.log(err);
-              next(new CustomizedError(501, 'Not implemented!!!'));
+              throw new CustomizedError(501, 'Not implemented!!!');
             });
         })
         .catch((err) => {
           console.log(err);
-          next(new CustomizedError(501, 'Not implemented!!!'));
+          throw new CustomizedError(501, 'Not implemented!!!');
         });
     })
     .catch((err) => {
       console.log(err);
-      next(new CustomizedError(501, 'Not implemented!!!'));
+      throw new CustomizedError(501, 'Not implemented!!!');
     });
 };
 
