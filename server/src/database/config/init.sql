@@ -29,9 +29,9 @@ CREATE TABLE comments (
 
 CREATE TABLE votes (
   id SERIAL PRIMARY KEY,
-  kind VARCHAR(10) NOT NULL,
-  user_id INT NOT NULL,
-  post_id INT NOT NULL,
+  kind VARCHAR(10),
+  user_id INT,
+  post_id INT,
   CONSTRAINT fk_votes_post_id FOREIGN KEY(post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT fk_votes_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
