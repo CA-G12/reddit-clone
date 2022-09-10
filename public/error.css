@@ -1,0 +1,119 @@
+/* Starting the styles reset. */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--color-text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+button {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Ending the styles reset. */
+
+/* Starting the general style */
+
+:root {
+  --main-color: #ffffff;
+  --secondary-color: #DAE0E6;
+  --third-color: #222222;
+  --forth-color: #1D2535;
+  --identity-color: #F14C26;
+}
+
+html {
+  line-height: 16px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  padding: 2rem 5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+/* Ending the general style */
+
+/* Ending the general style */
+
+header {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header i {
+  font-size: 25rem;
+  color: var(--identity-color);
+}
+
+main {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+main .error-status {
+  font-size: 8rem;
+  color: var(--third-color);
+}
+
+main .error-msg {
+  font-size: 3rem;
+  color: var(--third-color);
+}
+
+/* Ending the general style */
